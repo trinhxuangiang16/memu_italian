@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <title>Bài Giảng Video Thực Đơn Ẩm Thực Ý & Âu | Trattoria & Pizzeria</title>
+  <style>
+    :root {
+      --bg-dark: #120e0c;
+      --bg-panel: #1c1613;
+      --bg-card: #251d18;
+      --bg-card-hover: #2e241e;
+      --gold: #e5a93c;
+      --gold-light: #f6cb72;
+      --terracotta: #d95338;
+      --olive: #4a7c59;
+      --text-main: #f7f2eb;
+      --text-muted: #c2b5a6;
+      --border: rgba(229, 169, 60, 0.22);
+      --shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html, body {
+      height: 100%;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100dvh;
+    }
+
+    /* Top Header */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(24, 18, 15, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .btn-icon {
+      background: var(--bg-card);
+      color: var(--gold-light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-icon:hover, .btn-icon:active {
+      background: var(--gold);
+      color: #120e0c;
+      border-color: var(--gold);
+    }
+    .header-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--gold-light);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .slide-pill {
+      background: rgba(229, 169, 60, 0.16);
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* Slide Progress Track */
+    .top-progress-wrap {
+      height: 4px;
+      background: rgba(255,255,255,0.08);
+      width: 100%;
+    }
+    .top-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--terracotta), var(--gold));
+      width: 5%;
+      transition: width 0.35s ease;
+    }
+
+    /* Main Stage */
+    .main-stage {
+      flex: 1;
+      width: 100%;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 20px 16px 210px;
+      transition: opacity 0.25s ease;
+    }
+
+    /* Slide Header Banner */
+    .slide-hero {
+      background: linear-gradient(135deg, rgba(46, 33, 25, 0.96), rgba(26, 19, 15, 0.96));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px 22px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+    .slide-hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 6px; height: 100%;
+      background: linear-gradient(180deg, #008c45 33%, #f4f5f0 33%, #f4f5f0 66%, #cd212a 66%);
+    }
+    .hero-text {
+      flex: 1;
+      min-width: 0;
+    }
+    .section-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(229, 169, 60, 0.14);
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .slide-title {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+    .slide-subtitle {
+      font-size: clamp(13.5px, 2vw, 15.5px);
+      color: var(--text-muted);
+    }
+    .hero-banner-img {
+      width: 135px;
+      height: 105px;
+      object-fit: contain;
+      border-radius: 12px;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.6));
+      flex-shrink: 0;
+      cursor: zoom-in;
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 18px;
+    }
+
+    .item-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+    .item-card.active-reading {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px var(--gold), 0 12px 32px rgba(229, 169, 60, 0.28);
+      transform: translateY(-3px);
+    }
+    .card-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 16px 12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), transparent);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .card-img-wrap {
+      width: 106px;
+      height: 96px;
+      border-radius: 12px;
+      background: radial-gradient(circle, rgba(229,169,60,0.18) 0%, rgba(20,15,12,0.85) 100%);
+      border: 1px solid rgba(229,169,60,0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      padding: 6px;
+      overflow: hidden;
+      cursor: zoom-in;
+      position: relative;
+    }
+    .card-img-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.55));
+      transition: transform 0.25s ease;
+    }
+    .card-img-wrap:hover img {
+      transform: scale(1.08);
+    }
+    .card-head-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .card-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 5px;
+      flex-wrap: wrap;
+    }
+    .card-badge {
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: rgba(217, 83, 56, 0.22);
+      color: #ff9c85;
+      border: 1px solid rgba(217, 83, 56, 0.4);
+    }
+    .btn-speak-card {
+      background: rgba(229, 169, 60, 0.14);
+      color: var(--gold-light);
+      border: 1px solid rgba(229, 169, 60, 0.35);
+      border-radius: 999px;
+      padding: 3px 9px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+    .btn-speak-card:hover, .btn-speak-card.speaking {
+      background: var(--gold);
+      color: #120e0c;
+    }
+    .card-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 3px;
+    }
+    .card-sub {
+      font-size: 12.5px;
+      color: var(--gold-light);
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    .card-body {
+      padding: 14px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+    .points-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .points-list li {
+      font-size: 14px;
+      color: var(--text-main);
+      padding-left: 16px;
+      position: relative;
+    }
+    .points-list li::before {
+      content: "•";
+      color: var(--gold);
+      font-weight: bold;
+      font-size: 16px;
+      position: absolute;
+      left: 0;
+      top: -1px;
+    }
+    .flavor-box {
+      margin-top: auto;
+      background: linear-gradient(135deg, rgba(229, 169, 60, 0.13), rgba(217, 83, 56, 0.12));
+      border-left: 3px solid var(--gold);
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 13.5px;
+      color: #ffefd0;
+    }
+    .flavor-label {
+      font-weight: 800;
+      color: var(--gold-light);
+      margin-right: 4px;
+    }
+
+    /* Bottom Video Player Control Bar */
+    .player-dock {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 60;
+      background: rgba(20, 15, 12, 0.96);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+      box-shadow: 0 -10px 30px rgba(0,0,0,0.7);
+    }
+    .player-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    /* Teleprompter / Subtitle Box */
+    .subtitle-bar {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(229,169,60,0.2);
+      border-radius: 10px;
+      padding: 7px 12px;
+      font-size: 13.5px;
+      color: #f9e8c8;
+      max-height: 58px;
+      overflow-y: auto;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .subtitle-bar.hidden {
+      display: none;
+    }
+    .wave-indicator {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .wave-indicator span {
+      width: 3px;
+      height: 5px;
+      background: var(--gold);
+      border-radius: 2px;
+      transition: height 0.15s ease;
+    }
+    .wave-indicator.playing span:nth-child(1) { animation: wave 0.7s infinite ease-in-out 0.1s; }
+    .wave-indicator.playing span:nth-child(2) { animation: wave 0.7s infinite ease-in-out 0.25s; }
+    .wave-indicator.playing span:nth-child(3) { animation: wave 0.7s infinite ease-in-out 0.4s; }
+    @keyframes wave {
+      0%, 100% { height: 4px; }
+      50% { height: 16px; }
+    }
+
+    /* Audio Scrubber Row */
+    .scrubber-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .audio-range {
+      flex: 1;
+      accent-color: var(--gold);
+      height: 5px;
+      cursor: pointer;
+    }
+
+    /* Controls Buttons Row */
+    .controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .nav-btns, .extra-btns {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-play-main {
+      background: linear-gradient(135deg, var(--gold), #d48817);
+      color: #120e0c;
+      border: none;
+      border-radius: 999px;
+      padding: 9px 20px;
+      font-size: 14.5px;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 4px 16px rgba(229, 169, 60, 0.4);
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+    .btn-play-main:hover, .btn-play-main:active {
+      transform: scale(1.03);
+      filter: brightness(1.08);
+    }
+    .select-speed {
+      background: var(--bg-card);
+      color: var(--gold-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Drawer & Search Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.72);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-backdrop.open {
+      display: flex;
+    }
+    .drawer-box {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      width: 100%;
+      max-width: 680px;
+      max-height: 82dvh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .drawer-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .search-input {
+      width: 100%;
+      background: var(--bg-card);
+      color: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 15px;
+      outline: none;
+    }
+    .search-input:focus {
+      border-color: var(--gold);
+    }
+    .drawer-list {
+      padding: 12px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .toc-item {
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 11px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: all 0.2s;
+    }
+    .toc-item:hover, .toc-item.current {
+      border-color: var(--gold);
+      background: var(--bg-card-hover);
+    }
+    .toc-num {
+      background: rgba(229, 169, 60, 0.18);
+      color: var(--gold-light);
+      font-weight: 800;
+      font-size: 13px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Lightbox for Image Zoom */
+    .lightbox-img {
+      max-width: 92vw;
+      max-height: 80dvh;
+      object-fit: contain;
+      border-radius: 16px;
+      filter: drop-shadow(0 16px 40px rgba(0,0,0,0.85));
+    }
+
+    /* Mobile Responsive Tuning */
+    @media (max-width: 768px) {
+      .top-bar { padding: 8px 12px; }
+      .header-title { display: none; }
+      .main-stage { padding: 12px 12px 225px; }
+      .slide-hero {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 16px;
+        gap: 12px;
+      }
+      .hero-banner-img {
+        width: 100%;
+        height: 130px;
+        background: rgba(0,0,0,0.25);
+        padding: 6px;
+      }
+      .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .card-top {
+        padding: 13px;
+        gap: 12px;
+      }
+      .card-img-wrap {
+        width: 92px;
+        height: 86px;
+      }
+      .card-title { font-size: 16px; }
+      .points-list li { font-size: 13.8px; }
+      .player-dock { padding: 8px 12px calc(8px + env(safe-area-inset-bottom)); }
+      .btn-play-main {
+        padding: 8px 15px;
+        font-size: 13.5px;
+      }
+      .btn-icon {
+        padding: 7px 10px;
+        font-size: 13px;
+      }
+      .hide-mobile { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="top-bar">
+    <div class="brand-group">
+      <button class="btn-icon" onclick="openTocModal()" title="Mục lục 20 Slide">
+        ☰ <span>Mục lục</span>
+      </button>
+      <button class="btn-icon" onclick="openSearchModal()" title="Tìm nhanh món ăn hoặc rượu">
+        🔍 <span>Tìm món</span>
+      </button>
+      <span class="header-title">Cẩm Nang Đào Tạo Thực Đơn Ý & Âu (Trattoria & Pizzeria)</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span class="slide-pill" id="slideCounterPill">Slide 1 / 20</span>
+    </div>
+  </header>
+
+  <div class="top-progress-wrap">
+    <div class="top-progress-bar" id="topProgressBar"></div>
+  </div>
+
+  <!-- Main Slide Stage -->
+  <main class="main-stage" id="mainStage">
+    <!-- Rendered dynamically by JS -->
+  </main>
+
+  <!-- Fixed Bottom Video Lecture Player Bar -->
+  <footer class="player-dock">
+    <div class="player-inner">
+      <!-- Synchronized Teleprompter / Voiceover Script -->
+      <div class="subtitle-bar" id="subtitleBar">
+        <div class="wave-indicator" id="waveIndicator">
+          <span></span><span></span><span></span>
+        </div>
+        <div id="subtitleText" style="flex:1;">Bấm "Phát Bài Giảng" để nghe thuyết minh tự động chuyển trang như xem video...</div>
+      </div>
+
+      <!-- Audio Timeline Scrubber -->
+      <div class="scrubber-row">
+        <span id="curTimeTxt">00:00</span>
+        <input type="range" class="audio-range" id="audioScrubber" min="0" max="100" value="0" step="0.5" oninput="seekAudio(this.value)" />
+        <span id="durTimeTxt">00:00</span>
+      </div>
+
+      <!-- Main Player Controls -->
+      <div class="controls-row">
+        <div class="nav-btns">
+          <button class="btn-icon" onclick="prevSlide()" id="btnPrev" title="Slide trước (Phím mũi tên trái)">⏮ <span class="hide-mobile">Trước</span></button>
+          <button class="btn-play-main" onclick="togglePlayLecture()" id="btnPlayMain">
+            ▶ <span>Phát Bài Giảng</span>
+          </button>
+          <button class="btn-icon" onclick="nextSlide()" id="btnNext" title="Slide tiếp theo (Phím mũi tên phải)">⏭ <span class="hide-mobile">Tiếp</span></button>
+        </div>
+
+        <div class="extra-btns">
+          <select class="select-speed" id="speedSelect" onchange="changeSpeed(this.value)" title="Tốc độ giọng đọc">
+            <option value="0.85">0.85x Chậm</option>
+            <option value="1" selected>1.0x Chuẩn</option>
+            <option value="1.15">1.15x Hơi nhanh</option>
+            <option value="1.25">1.25x Nhanh</option>
+            <option value="1.5">1.5x Rất nhanh</option>
+          </select>
+          <button class="btn-icon" id="btnAutoNext" onclick="toggleAutoAdvance()" title="Tự động chuyển sang slide tiếp theo khi đọc xong">
+            🔁 <span id="autoNextTxt">Tự chuyển: BẬT</span>
+          </button>
+          <button class="btn-icon hide-mobile" onclick="toggleSubtitleBar()" title="Ẩn/Hiện phụ đề thuyết minh">
+            💬 <span>Phụ đề</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TOC Drawer Modal -->
+  <div class="modal-backdrop" id="tocModal" onclick="if(event.target===this) closeTocModal()">
+    <div class="drawer-box">
+      <div class="drawer-header">
+        <h3 style="color:var(--gold-light); font-size:17px;">📚 Mục Lục 20 Slide Bài Giảng</h3>
+        <button class="btn-icon" onclick="closeTocModal()">✕ Đóng</button>
+      </div>
+      <div class="drawer-list" id="tocList"></div>
+    </div>
+  </div>
+
+  <!-- Instant Search Modal -->
+  <div class="modal-backdrop" id="searchModal" onclick="if(event.target===this) closeSearchModal()">
+    <div class="drawer-box">
+      <div class="drawer-header" style="flex-direction:column; align-items:stretch;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 style="color:var(--gold-light); font-size:17px;">🔍 Tìm Nhanh Món Ăn, Nguyên Liệu, Rượu</h3>
+          <button class="btn-icon" onclick="closeSearchModal()">✕ Đóng</button>
+        </div>
+        <input type="text" class="search-input" id="searchInput" placeholder="Nhập tên món, rượu, phô mai (VD: Pici, Parma, Brunello, Carbonara, Nduja...)" oninput="runSearch(this.value)" />
+      </div>
+      <div class="drawer-list" id="searchResults"></div>
+    </div>
+  </div>
+
+  <!-- Image Lightbox Modal -->
+  <div class="modal-backdrop" id="lightboxModal" onclick="closeLightbox()">
+    <div style="text-align:center;">
+      <img id="lightboxImg" class="lightbox-img" src="" alt="Zoom" />
+      <p id="lightboxCaption" style="margin-top:12px; color:#fff; font-weight:700; font-size:16px;"></p>
+    </div>
+  </div>
+
+  <!-- Hidden Audio Elements -->
+  <audio id="slideAudio" preload="auto"></audio>
+  <audio id="cardAudio" preload="none"></audio>
+
+  <script>
+    const SLIDES = [{"id": 1, "section": "TỔNG QUAN", "title": "Khóa Đào Tạo Thực Đơn Ẩm Thực Ý & Âu", "subtitle": "Cẩm nang trình chiếu Video + Giọng đọc chuyên gia dành cho nhân viên mới (Trattoria & Pizzeria)", "banner_img": "antipasto_platter", "items": [{"name": "Phong Cách Trattoria & Pizzeria Đương Đại", "sub": "Triết lý ẩm thực cốt lõi của nhà hàng", "img": "pizza_margherita", "badge": "Bản Sắc Ý", "points": ["Sử dụng lò củi nướng truyền thống (Wood-fired Oven 400–450°C) cho Pizza & bánh mì Focaccia.", "Mì Ý làm thủ công (Pici se tay vùng Tuscany, Gnocchi khoai tây, Cappelletti gói tay, Spaghetti ép khuôn đồng).", "Nguyên liệu nhập khẩu chuẩn bảo hộ xuất xứ Ý (DOP/IGP): Parma Ham 24 tháng, Parmigiano Reggiano, Pecorino Romano, Burrata, Taleggio, Gorgonzola."], "flavor": "Tôn vinh hương vị nguyên bản (Simplicity & Authenticity): tươi mát của thảo mộc, béo ngậy của phô mai, mặn dịu ngọt hậu (umami) của thịt muối ủ lâu năm."}, {"name": "Cấu Trúc 6 Học Phần Thực Chiến", "sub": "Lộ trình 20 Slide Bài Giảng Video", "img": "wines_banner", "badge": "20 Slides", "points": ["Học phần 1 (Slide 2–3): Từ điển Thịt nguội (Salumi), Phô mai (Formaggi) & Gia vị đặc trưng.", "Học phần 2 (Slide 4–8): Phân hạng Rượu Vang, phương pháp ủ & chi tiết 16 chai Vang trong menu.", "Học phần 3 (Slide 9–10): 7 dòng Rượu Mạnh/Khai vị, 12 Cocktails, Cà phê Ý, Nước khoáng & Bia Âu.", "Học phần 4–6 (Slide 11–20): 8 loại Mì Ý, 15 loại Sốt Mì, 13 bánh Pizza, Khai vị, Salad, Món chính & Tráng miệng."], "flavor": "Bấm nút ▶ Phát Bài Giảng bên dưới để nghe thuyết minh tự động chuyển trang như xem video, hoặc bấm 🔊 Nghe trên từng thẻ món ăn!"}], "narration": "Chào mừng bạn đến với khóa đào tạo thực đơn ẩm thực Ý và món Âu. Nhà hàng chúng ta mang phong cách Trattoria và Pizzeria đương đại, nổi bật với lò củi nướng truyền thống, mì tươi làm thủ công và nguyên liệu nhập khẩu chuẩn Ý. Bạn có thể bấm nút Phát để nghe bài giảng tự động chuyển trang như video, hoặc chạm vào từng món ăn để xem chi tiết.", "audio_key": "slide_01"}, {"id": 2, "section": "HỌC PHẦN 1A • NGUYÊN LIỆU", "title": "Từ Điển Thịt Nguội & Xúc Xích Ý (Salumi)", "subtitle": "Nguồn gốc vùng miền, quy trình ủ muối và đặc điểm nhận diện trên bàn tiệc", "items": [{"name": "Parma Ham (Prosciutto di Parma DOP)", "sub": "Đùi heo muối ủ 24 tháng • Vùng Parma, Bắc Ý", "img": "ing_parma_ham", "badge": "DOP • Phổ biến TG", "points": ["Nguồn gốc: Vùng đồi Parma (Emilia-Romagna), đạt chứng nhận bảo hộ cao nhất DOP.", "Nguyên liệu & Cách ủ: Chỉ dùng đùi sau heo trắng Ý ăn váng sữa Parmigiano và muối biển; không chất bảo quản, không hun khói, treo ủ gió núi tự nhiên suốt 24 tháng.", "Đặc điểm: Lát cắt mỏng như lụa, màu hồng đỏ xen vân mỡ trắng ngà tan ở nhiệt độ phòng; luôn ăn sống (trải lên Pizza sau khi nướng)."], "flavor": "Mặn dịu thanh tao đầu lưỡi, hậu vị ngọt sâu (umami), thơm mùi bơ sữa và hạt dẻ."}, {"name": "Mortadella (Mortadella Bologna IGP)", "sub": "Chả lụa heo hạt mỡ & hạt dẻ cười • Vùng Bologna", "img": "ing_mortadella", "badge": "IGP • Phổ biến TG", "points": ["Nguồn gốc: Thành phố Bologna (Emilia-Romagna) – tổ tiên của xúc xích Bologna thế giới.", "Nguyên liệu & Chế biến: Thịt heo xay nhuyễn mịn như nhung, trộn các hạt mỡ cổ heo cắt vuông trắng ngà, tiêu hạt, quả sim và hạt dẻ cười (pistachio), đem hấp chín chậm nhiều giờ.", "Đặc điểm: Mặt cắt hồng phấn đặc trưng điểm các đốm mỡ trắng và hạt dẻ cười xanh."], "flavor": "Thơm nồng gia vị ấm, kết cấu mềm mượt, béo mịn và ngọt thịt tự nhiên."}, {"name": "Salami (Salame Italiano)", "sub": "Xúc xích heo lên men sấy khô • Khắp nước Ý", "img": "ing_salami", "badge": "Phổ biến TG", "points": ["Nguồn gốc: Truyền thống lâu đời khắp nước Ý (từ chữ 'sale' nghĩa là muối).", "Nguyên liệu & Cách làm: Thịt nạc và mỡ heo băm theo tỷ lệ chuẩn, ướp tỏi, rượu vang, tiêu đen, nhồi vỏ ruột tự nhiên rồi lên men và treo sấy khô.", "Đặc điểm: Kết cấu săn chắc, vân mỡ hạt lựu; khi nướng trên Pizza rìa lát hơi cong lại và tươm mỡ thơm lừng."], "flavor": "Đậm đà, hơi chua nhẹ tự nhiên từ quá trình lên men lactic, dậy mùi tiêu đen và tỏi."}, {"name": "Coppa (Capocollo)", "sub": "Thịt cơ cổ heo muối ủ khô • Bắc & Trung Ý", "img": "ing_coppa", "badge": "Đặc sản Ý", "points": ["Nguồn gốc: Vùng Emilia-Romagna và Calabria.", "Nguyên liệu & Cách làm: Làm từ nguyên khối cơ cổ/vai heo ướp muối, rượu vang, thảo mộc, nhồi vỏ tự nhiên và ủ khô 3–6 tháng.", "Đặc điểm: Nhiều vân mỡ cẩm thạch (marbling) đan xen hơn Parma Ham nên lát thịt mềm ẩm, béo đậm và thơm mùi thảo mộc."]}, {"name": "'Nduja (Xúc xích heo cay dạng phết)", "sub": "Đặc sản thị trấn Spilinga • Vùng Calabria (Nam Ý)", "img": "ing_nduja", "badge": "Cay Nồng", "points": ["Nguồn gốc: Vùng Calabria (mũi giày miền Nam nước Ý).", "Nguyên liệu & Cách làm: Thịt heo nhiều mỡ xay nhuyễn cùng lượng lớn ớt đỏ Calabria phơi khô, nhồi vỏ, hun khói nhẹ và ủ lên men.", "Đặc điểm: Kết cấu mềm nhuyễn như pate/bơ phết (không cắt lát được), màu đỏ rực, khi gặp nhiệt sẽ tan chảy thành dầu ớt thịt thơm lừng."]}, {"name": "Guanciale (Má heo muối truyền thống)", "sub": "Vùng Lazio (Rome) & Umbria • Linh hồn Carbonara", "img": "ing_guanciale", "badge": "Chuẩn Rome", "points": ["Nguồn gốc: Miền Trung nước Ý (từ chữ 'guancia' nghĩa là cái má).", "Nguyên liệu & Cách làm: Phần má/nọng heo ướp muối, tiêu đen đập dập, hương thảo rồi ủ khô 3 tháng (không hun khói như Bacon).", "Đặc điểm: Tỷ lệ mỡ cao cấp ~70%; khi áp chảo chảy ra lớp mỡ trong vắt cực thơm giúp tạo nhũ tương sánh mịn cho sốt Original Carbonara."]}], "narration": "Học phần 1A: Từ điển thịt nguội Ý Salumi. Đầu tiên là Parma Ham ủ 24 tháng vùng Parma, vị mặn dịu ngọt hậu, luôn ăn sống không nấu chín. Thứ hai là Mortadella vùng Bologna, chả heo mịn xen hạt mỡ trắng và hạt dẻ cười. Thứ ba là Salami lên men sấy khô đậm vị tiêu tỏi. Thứ tư là Coppa làm từ cơ cổ heo nhiều vân mỡ. Thứ năm là xúc xích cay dạng phết Nduja vùng Calabria. Và cuối cùng là Guanciale, má heo muối vùng Rome, linh hồn của sốt Carbonara nguyên bản.", "audio_key": "slide_02"}, {"id": 3, "section": "HỌC PHẦN 1B • PHÔ MAI & GIA VỊ", "title": "Từ Điển Phô Mai Ý (Formaggi) & Gia Vị Đặc Trưng", "subtitle": "7 dòng phô mai danh tiếng và các nguyên liệu nâng tầm hương vị món Âu", "items": [{"name": "Mozzarella & Buffalo Mozzarella", "sub": "Phô mai tươi kéo sợi • Vùng Campania (Nam Ý)", "img": "ing_buffalo_mozzarella", "badge": "Phổ biến TG", "points": ["Nguồn gốc: Vùng Campania; làm bằng kỹ thuật Pasta Filata (kéo giãn khối phô mai trong nước nóng tạo thớ sợi dẻo).", "Phân biệt 2 loại trong menu: Mozzarella sữa bò (Fior di Latte) dùng nướng Pizza; Buffalo Mozzarella (125g sữa trâu tươi) dùng cho Salad Caprese & Cheese Platter.", "Đặc điểm: Phô mai sữa trâu trắng sứ, ngâm trong nước whey, hàm lượng béo gấp đôi sữa bò."], "flavor": "Chua thanh cực nhẹ, thơm ngậy mùi sữa tươi mới vắt, mềm mọng nước (Buffalo) hoặc dẻo dai kéo sợi (Pizza)."}, {"name": "Burrata (Phô mai túi kem tươi)", "sub": "Đặc sản vùng Murgia, Puglia (Nam Ý)", "img": "burrata_salad", "badge": "Phổ biến TG", "points": ["Nguồn gốc: Vùng Puglia (gót giày nước Ý), ra đời đầu thế kỷ 20 ('burro' nghĩa là bơ).", "Cấu tạo thủ công: Vỏ ngoài là túi Mozzarella mỏng dẻo, bên trong nhồi hỗn hợp Stracciatella (sợi mozzarella xé nhỏ ngâm đẫm kem tươi).", "Đặc điểm: Khi xẻ đôi quả Burrata, phần nhân kem sánh mịn bên trong chảy tràn ra."], "flavor": "Béo ngậy như bơ kem tươi, ngọt mát, mượt mà; luôn ăn tươi trên Salad hoặc đặt lên mì/pizza vừa ra lò."}, {"name": "Parmesan (Parmigiano Reggiano DOP)", "sub": "Vua của các loại phô mai • Vùng Emilia-Romagna", "img": "ing_parmesan", "badge": "DOP • Phổ biến TG", "points": ["Nguồn gốc: Vùng Parma, Reggio Emilia, Modena, Bologna (Bắc Ý).", "Cách làm: Sữa bò tươi nấu trong chảo đồng, ép bánh lớn 40kg và ủ tự nhiên từ 12 đến 36 tháng.", "Đặc điểm: Kết cấu cứng, giòn hạt với các tinh thể axit amin tyrosine lạo xạo nhẹ khi nhai."], "flavor": "Mặn đậm sắc nét, cực giàu vị ngọt hậu umami, thơm mùi hạt dẻ nướng và trái cây khô."}, {"name": "Pecorino Romano DOP", "sub": "Phô mai sữa cừu cổ điển • Vùng Lazio & Sardinia", "img": "ing_pecorino", "badge": "DOP • 2000 năm", "points": ["Nguồn gốc: Lịch sử hơn 2.000 năm từ thời La Mã cổ đại ('pecora' nghĩa là con cừu).", "Cách làm & Đặc điểm: Làm từ 100% sữa cừu, ủ cứng 5–8 tháng; vị mặn đậm, cay nồng nhẹ (sharp/piquant) và thơm mùi thảo nguyên hơn Parmesan – bắt buộc cho Original Carbonara."]}, {"name": "Taleggio DOP (Phô mai rửa vỏ bán mềm)", "sub": "Thung lũng Val Taleggio • Vùng Lombardy (Bắc Ý)", "img": "ing_taleggio", "badge": "DOP • Béo Chảy", "points": ["Cách làm: Phô mai sữa bò hình vuông, trong 40 ngày ủ được rửa vỏ định kỳ bằng nước muối biển (washed-rind) tạo vỏ màu hồng cam.", "Đặc điểm: Mùi hương khá nồng đặc trưng, nhưng khi ăn lại rất êm, béo ngậy như bơ, hậu vị trái cây nhẹ và tan chảy cực mượt trên Pizza/Mì."]}, {"name": "Gorgonzola DOP (Phô mai xanh vân nấm)", "sub": "Vùng Lombardy & Piedmont (Bắc Ý)", "img": "ing_gorgonzola", "badge": "DOP • Phổ biến TG", "points": ["Nguồn gốc & Cách làm: Ra đời từ thế kỷ thứ 9 gần Milan; sữa bò cấy bào tử nấm xanh Penicillium glaucum tạo các đường vân xanh cẩm thạch.", "Đặc điểm: Kết cấu kem mềm (Dolce), luôn kết hợp hoàn hảo với mật ong và hạt óc chó."], "flavor": "Béo ngậy, mặn đậm, cay nồng nhẹ nơi đầu lưỡi và thơm mùi nấm men quyến rũ."}, {"name": "Mascarpone, Nấm Truffle, Dầu EVO & Balsamic", "sub": "Nhóm nguyên liệu tạo chiều sâu hương vị", "img": "ing_truffle", "badge": "Tinh Hoa Ý", "points": ["Mascarpone (Lombardy): Phô mai kem tươi béo 70–75%, trắng mịn như nhung làm bánh Tiramisù.", "Nấm cục đen Truffle (Umbria/Piedmont): 'Kim cương đen' mọc ngầm dưới rễ cây sồi, hương đất rừng và gỗ ẩm nồng nàn bậc nhất thế giới.", "EVO Oil & Balsamic Modena: Dầu ô liu ép lạnh lần đầu thơm mùi cỏ xanh; Giấm đen Balsamic nấu từ nước nho Trebbiano ủ thùng gỗ chua ngọt sánh đậm.", "Rau Rocket (Arugula) & Bánh que Grissini: Rau cải tên lửa vị hăng cay nhẹ cắt ngấy; bánh mì que giòn rụm vùng Turin."]}], "narration": "Học phần 1B: Từ điển phô mai Ý và gia vị cốt lõi. Mozzarella sữa trâu mềm mọng nước, còn Mozzarella sữa bò kéo sợi trên pizza. Burrata vùng Puglia có vỏ mozzarella bọc nhân kem tươi chảy tràn. Parmesan là vua phô mai Ý ủ lâu năm giàu vị umami. Pecorino Romano làm từ sữa cừu mặn đậm. Taleggio là phô mai rửa vỏ béo chảy. Gorgonzola là phô mai xanh vân nấm cực hợp với mật ong và óc chó. Mascarpone là phô mai kem làm bánh Tiramisu, cùng nấm cục đen Truffle, dầu ô liu ép lạnh và giấm đen Balsamic.", "audio_key": "slide_03"}, {"id": 4, "section": "HỌC PHẦN 2A • KIẾN THỨC RƯỢU VANG", "title": "Phân Hạng Rượu Vang & Phương Pháp Ủ Đặc Trưng", "subtitle": "Giải mã thuật ngữ trên nhãn chai và công nghệ làm vang trong phạm vi thực đơn", "banner_img": "wines_banner", "items": [{"name": "Hệ Thống Phân Hạng Trên Nhãn Chai (DOCG / DOC / IGT)", "sub": "Cách đọc cấp bậc chất lượng rượu vang Ý & Pháp", "img": "wine_brunello", "badge": "Phân Hạng", "points": ["DOCG (Denominazione di Origine Controllata e Garantita): Cấp bậc CAO NHẤT của Ý – kiểm soát và bảo chứng nghiêm ngặt vùng trồng, giống nho, thời gian ủ (Chianti, Brunello di Montalcino, Franciacorta, Amarone).", "DOC (Denominazione di Origine Controllata): Cấp bậc cao thứ 2 của Ý, tương đương AOC của Pháp (Soave Classico, Pinot Grigio delle Venezie).", "IGT (Ý) / IGP (Pháp): Vang chỉ dẫn địa lý vùng miền, linh hoạt phối trộn giống nho (Nero d'Avola Sicilia, Banfi Le Rime Tuscany, Figaro Rosé).", "Classico / Reservado / Brut: 'Classico' là vùng lõi lâu đời nhất; 'Reservado' là dòng ủ chọn lọc; 'Brut' là vang sủi vị khô sắc nét (ít đường)."]}, {"name": "Phương Pháp Ủ Vang Đỏ (Red Wines)", "sub": "Ngâm vỏ nho, Thùng gỗ sồi & Kỹ thuật Appassimento", "img": "wine_amarone", "badge": "Ủ Gỗ Sồi", "points": ["Ngâm chiết vỏ nho (Maceration): Ép nho nguyên vỏ để chiết xuất màu đỏ ruby, chất chát (tannin) và hợp chất hương thơm.", "Ủ bồn thép vs Thùng gỗ sồi (Oak Barrel): Các dòng trẻ (Merlot, Chianti) ủ bồn thép để giữ vị trái cây tươi; các dòng cao cấp (Brunello, Shiraz, Amarone) ủ 12–30 tháng trong thùng gỗ sồi Pháp/Slavonian để làm mềm vị chát và tạo tầng hương vani, khói, da thuộc, sô-cô-la.", "Phương pháp Appassimento (đặc trưng của Amarone): Phơi khô nho trên giàn tre suốt 3–4 tháng mùa đông cho mất 40% nước, cô đặc đường và hương vị trước khi ép."], "flavor": "Phục vụ ở nhiệt độ mát hầm rượu (16–18°C; Pinot Noir 14–16°C), dùng ly bầu lớn; các chai cao cấp nên thở (Decant) 30–60 phút."}, {"name": "Phương Pháp Ủ Vang Trắng (White) & Vang Hồng (Rosé)", "sub": "Ép lạnh tách vỏ & Giữ độ chua thanh khiết", "img": "wine_sauvignon_blanc", "badge": "Lên Men Lạnh", "points": ["Vang trắng (White Wine): Tách bỏ vỏ nho ngay khi ép, chỉ lên men nước nho ở nhiệt độ lạnh (12–16°C) trong bồn thép không gỉ (Stainless Steel) để bảo toàn độ chua giòn (acidity) và hương hoa cỏ, cam chanh.", "Ủ trên xác nấm men (Sur Lie): Áp dụng cho Gewürztraminer và Soave Classico giúp rượu sánh mượt và giàu hậu vị khoáng chất.", "Vang hồng (Rosé Wine): Ngâm vỏ nho đỏ với nước nho chỉ trong vài giờ ngắn ngủi để lấy sắc hồng cá hồi lấp lánh, sau đó rút vỏ và lên men lạnh như vang trắng."], "flavor": "Luôn ngâm lạnh trong xô đá ở nhiệt độ 8–12°C, dùng ly bầu vừa để giữ độ mát sảng khoái."}, {"name": "Phương Pháp Ủ Vang Sủi Bọt (Sparkling Wines)", "sub": "Charmat (Bồn kín) vs Metodo Classico (Lên men trong chai)", "img": "wine_franciacorta", "badge": "2 Trường Phái", "points": ["Phương pháp Charmat / Tank Method (Cuvée Golden Heart - Glera/Prosecco): Lên men lần 2 tạo bọt ga tự nhiên trong bồn thép kín áp suất cao, giữ trọn hương táo xanh, lê trắng và hoa tươi.", "Phương pháp Metodo Classico / Traditional Method (Franciacorta DOCG): Lên men lần 2 trực tiếp bên trong từng chai và ủ cùng nấm men suốt 24–25 tháng (giống hệt Champagne Pháp), tạo hạt bọt nhỏ li ti mịn như kem và hương bánh mì nướng bơ (brioche)."], "flavor": "Ướp thật lạnh ở 6–8°C, phục vụ trong ly Flute thon dài để ngắm dải bọt sủi."}], "narration": "Học phần 2A: Tổng quan rượu vang, phân hạng và phương pháp ủ. Trên nhãn rượu Ý, DOCG là cấp bậc cao nhất, tiếp theo là DOC và IGT. Thực đơn có 4 nhóm rượu: Vang đỏ ủ bồn thép hoặc thùng gỗ sồi giúp làm mềm độ chát. Vang trắng lên men lạnh trong bồn thép giữ vị chua thanh mát. Vang sủi bọt lên men lần hai bằng bồn kín Charmat như dòng Glera, hoặc lên men trong chai Metodo Classico như Franciacorta. Và vang hồng ngâm vỏ nho đỏ ngắn giờ.", "audio_key": "slide_04"}, {"id": 5, "section": "HỌC PHẦN 2B • RƯỢU VANG ĐỎ (PHẦN 1)", "title": "Thực Đơn Rượu Vang Đỏ: Dòng Dễ Uống & Kinh Điển", "subtitle": "4 chai vang đỏ đầu tiên trong menu (Trang 8) – Xuất xứ, giống nho, hương vị & cách uống", "items": [{"name": "1. Terre Forti, Merlot D’Italia", "sub": "189K/Ly • 489K/Bình • 889K/Chai | Giống nho: Merlot", "img": "wine_merlot", "badge": "Italy • House Wine", "points": ["Xuất xứ & Giống nho: Nước Ý – Giống nho Merlot (giống nho đỏ phổ biến toàn cầu có gốc từ Bordeaux, Pháp).", "Phương pháp ủ: Lên men và ủ trong bồn thép không gỉ nhằm giữ trọn nét tươi trẻ của trái cây đỏ.", "Cách uống & Kết hợp món: Uống ở 16°C không cần thở lâu; bán theo Ly/Bình/Chai, cực hợp với Pizza Salami, Ham & Mushrooms, mì sốt cà chua và thịt viên."], "flavor": "Màu đỏ ruby tươi; thơm mùi mận chín (plum), anh đào đen và dâu rừng; vị mềm mại, ít chát (low-medium tannin), rất dễ uống."}, {"name": "2. Concha Y Toro, Reservado Cabernet Sauvignon", "sub": "239K/Ly • 669K/Bình • 1,049K/Chai | Central Valley, Chile", "img": "wine_cabernet", "badge": "Chile • Bán Chạy", "points": ["Xuất xứ & Giống nho: Thung lũng Central Valley, Chile (nhà làm vang lớn nhất Mỹ Latinh Concha y Toro) – Giống nho Cabernet Sauvignon ('Vua nho đỏ').", "Phương pháp ủ: Lên men kiểm soát nhiệt độ và ủ ngắn cùng gỗ sồi để tạo điểm nhấn hương gỗ ấm.", "Cách uống & Kết hợp món: Phục vụ ở 16–18°C; rất hợp với bò bít tết (Flank Steak, Beef Steak Pizza), Lasagna hoặc sườn heo."], "flavor": "Màu đỏ hồng ngọc đậm; thơm mùi lý chua đen (blackcurrant), mận chín, thoảng hương vani và tiêu đen; độ chát (tannin) rõ ràng, hậu vị tròn trịa."}, {"name": "3. Canapi, Nero d’Avola IGT Sicilia", "sub": "1,109K/Chai | Giống nho: Nero d’Avola – Đảo Sicily, Ý", "img": "wine_nero_davola", "badge": "Sicily • IGT", "points": ["Xuất xứ & Giống nho: Đảo Sicily đầy nắng gió miền Nam nước Ý – Giống nho bản địa trứ danh nhất Sicily là Nero d’Avola ('Nho đen vùng Avola').", "Phương pháp ủ: Nho chín mọng dưới nắng Địa Trung Hải, lên men chậm và ủ kết hợp bồn thép cùng thùng gỗ sồi nhỏ.", "Cách uống & Kết hợp món: Phục vụ 16–18°C; kết hợp tuyệt vời với các món miền Nam Ý có vị cay nồng như Capo Spicy 'Nduja Pizza, Arrabbiata hoặc xúc xích nướng."], "flavor": "Màu đỏ tím sâu; nồng nàn hương anh đào đen, mận khô, cam thảo và gia vị ấm; vị đậm đà, ấm áp, tannin mượt mà và hậu vị ngọt trái cây chín."}, {"name": "4. Banfi Placido, Chianti DOCG", "sub": "1,189K/Chai | Giống nho: Sangiovese – Vùng Tuscany, Ý", "img": "wine_chianti", "badge": "Tuscany • DOCG", "points": ["Xuất xứ & Giống nho: Vùng Tuscany (miền Trung Ý), đạt chuẩn cao nhất DOCG từ nhà Banfi danh tiếng – Giống nho Sangiovese ('Máu của thần Jupiter').", "Phương pháp ủ: Lên men truyền thống vùng Tuscany để tôn vinh sự thanh thoát, sống động của giống nho Sangiovese.", "Cách uống & Kết hợp món: Phục vụ 16°C; là chai vang 'sinh ra để ăn đồ Ý' vì độ chua thanh cắt béo và hòa quyện hoàn hảo với sốt cà chua (Margherita, Prosciutto Crudo, Ragù, Lasagna)."], "flavor": "Màu đỏ ruby sáng; hương thơm đặc trưng của anh đào chua (sour cherry), hoa tím (violet) và thảo mộc khô; vị khô (dry), độ chua sắc nét kích thích vị giác."}], "narration": "Học phần 2B: Rượu vang đỏ phần 1. Một là Terre Forti Merlot của Ý, ít chát, thơm mùi mận chín rất dễ uống. Hai là Concha Y Toro Cabernet Sauvignon từ Chile, vị đậm vừa, thơm lý chua đen và vani, hợp với bít tết. Ba là Canapi Nero d Avola từ đảo Sicily, đậm đà ấm áp, hợp món cay. Bốn là Banfi Placido Chianti DOCG làm từ nho Sangiovese vùng Tuscany, có độ chua thanh sắc nét, sinh ra để ăn kèm pizza và mì sốt cà chua.", "audio_key": "slide_05"}, {"id": 6, "section": "HỌC PHẦN 2C • RƯỢU VANG ĐỎ (PHẦN 2)", "title": "Thực Đơn Rượu Vang Đỏ: Dòng Cao Cấp & Đặc Tuyển", "subtitle": "4 chai vang đỏ thượng hạng trong menu (Trang 8) – Amarone, Brunello, Shiraz Úc & Pinot Noir Mỹ", "items": [{"name": "5. Masi, Costasera, Amarone Classico DOCG", "sub": "4,698K/Chai | Corvina, Rondinella, Molinara – Veneto, Ý", "img": "wine_amarone", "badge": "Đắt Giá Nhất Menu", "points": ["Xuất xứ & Giống nho: Vùng Valpolicella Classico, Veneto (Đông Bắc Ý) – Phối trộn 3 giống nho: Corvina (70%), Rondinella (25%), Molinara (5%).", "Phương pháp ủ Appassimento: Nho được phơi khô tự nhiên trên giàn tre 3–4 tháng mùa đông cho cô đặc đường và hương vị, sau đó ép lên men và ủ 28–30 tháng trong thùng gỗ sồi Slavonian & Allier.", "Cách uống & Kết hợp món: Phục vụ 18°C, mở thở trong Decanter 45–60 phút; hoàn hảo với Beef Tagliata 300g, phô mai ủ lâu năm và sốt nấm Truffle."], "flavor": "Đỉnh cao quyền lực (full-bodied, ~15% ABV); bùng nổ hương trái cây sấy khô (sung, nho khô, mận hầm), sô-cô-la đắng, cà phê espresso và quế hồi; vị sánh đặc như nhung, hậu vị bất tận."}, {"name": "6. Castello Banfi, Brunello di Montalcino DOCG", "sub": "4,489K/Chai | Sangiovese Grosso (Brunello) – Tuscany, Ý", "img": "wine_brunello", "badge": "Tứ Đại Danh Tửu Ý", "points": ["Lưu ý quan trọng cho nhân viên: Trên menu đang in nhầm dòng phụ là 'Merlot - Italy', nhưng thực tế Brunello di Montalcino DOCG theo luật Ý bắt buộc làm từ 100% giống nho Sangiovese Grosso (Brunello) tại Montalcino, Tuscany!", "Phương pháp ủ: Theo luật DOCG, rượu bắt buộc ủ tối thiểu 4–5 năm trước khi xuất xưởng (ít nhất 2 năm trong thùng gỗ sồi Pháp & Slavonian).", "Cách uống & Kết hợp món: Thở trong Decanter 1 giờ ở 18°C; dùng kèm Beef Tagliata, Flank Steak hoặc Antipasto Platter."], "flavor": "Màu đỏ ngả gạch cam (garnet); hương thơm phức hợp quý phái của dâu rừng, anh đào ngâm rượu, da thuộc, thuốc lá, gỗ tuyết tùng và nấm Truffle; cấu trúc đồ sộ, tannin mạnh mẽ nhưng cực kỳ lịch lãm."}, {"name": "7. De Bortoli, Woodfired Heathcote Shiraz", "sub": "1,968K/Chai | Giống nho: Shiraz – Vùng Heathcote, Úc", "img": "wine_shiraz", "badge": "Victoria, Úc", "points": ["Xuất xứ & Giống nho: Vùng Heathcote (bang Victoria, Úc) nổi tiếng với đất đỏ cổ đại Cambrian – Giống nho Shiraz (Syrah), niềm tự hào số 1 của vang đỏ Úc.", "Phương pháp ủ: Lên men truyền thống và ủ 12–15 tháng trong thùng gỗ sồi Pháp và Mỹ nướng cháy mặt trong (toasted oak).", "Cách uống & Kết hợp món: Phục vụ 17–18°C; đúng như tên gọi 'Woodfired', sinh ra để đi cùng các món thịt nướng lửa than/lò củi (Rib-eye, Flank Steak, Xúc xích nướng)."], "flavor": "Màu đỏ mực tím đậm đặc; bùng nổ hương mâm xôi đen (blackberry), việt quất, tiêu đen đập dập, khói gỗ nướng, sô-cô-la đen và vani; vị đậm đặc, chát mượt."}, {"name": "8. Clay Creek, Pinot Noir", "sub": "1,579K/Chai | Giống nho: Pinot Noir – California, Mỹ", "img": "wine_pinot_noir", "badge": "California, USA", "points": ["Xuất xứ & Giống nho: Bang California, Mỹ – Giống nho Pinot Noir ('Nữ hoàng nho đỏ' có vỏ mỏng và thanh lịch nhất thế giới).", "Phương pháp ủ: Lên men nhẹ nhàng và ủ ngắn với gỗ sồi Pháp để giữ nét thanh tao, mềm mại.", "Cách uống & Kết hợp món: Ướp mát hơn vang đỏ thường (14–16°C); cực kỳ đa năng, uống hợp với cả Cá hồi đút lò (Passion Fruit Salmon), sườn heo Milanese, pizza nấm Truffle và thịt nguội."], "flavor": "Màu đỏ ruby trong trẻo; thơm ngát mùi dâu tây chín, anh đào đỏ, mâm xôi, hoa hồng và chút vani ngọt; vị mượt như lụa (silky), rất ít chát (low tannin)."}], "narration": "Học phần 2C: Rượu vang đỏ cao cấp phần 2. Đắt giá nhất là Masi Costasera Amarone vùng Veneto, làm bằng phương pháp Appassimento phơi khô nho suốt mùa đông và ủ thùng sồi hơn 2 năm, vị sánh đặc quyền lực. Tiếp theo là Castello Banfi Brunello di Montalcino DOCG vùng Tuscany, lưu ý thực tế chai này làm từ 100 phần trăm nho Sangiovese Grosso chứ không phải Merlot như lỗi in trên menu. Thứ bảy là De Bortoli Shiraz từ Úc đậm vị tiêu đen và khói nướng. Thứ tám là Clay Creek Pinot Noir từ Mỹ mượt như lụa, uống được với cả cá hồi.", "audio_key": "slide_06"}, {"id": 7, "section": "HỌC PHẦN 2D • RƯỢU VANG TRẮNG", "title": "Thực Đơn Rượu Vang Trắng (5 Chai)", "subtitle": "Các dòng vang trắng thanh mát từ Ý và Chile (Trang 8) – Ngâm lạnh 8–12°C", "items": [{"name": "1. Terre Forti, Pinot Grigio delle Venezie", "sub": "189K/Ly • 489K/Bình • 889K/Chai | Pinot Grigio – Đông Bắc Ý", "img": "wine_pinot_grigio", "badge": "Italy • House White", "points": ["Xuất xứ & Giống nho: Vùng Delle Venezie (Đông Bắc Ý) – Giống nho Pinot Grigio (giống nho trắng nổi tiếng và bán chạy nhất của Ý trên thế giới).", "Phương pháp ủ: Lên men lạnh hoàn toàn trong bồn thép không gỉ.", "Cách uống & Kết hợp món: Ướp lạnh 8–10°C; tuyệt vời khi uống khai vị, ăn kèm Salad, Mực/Tôm chiên giòn và mì nghêu Vongole."], "flavor": "Màu vàng rơm nhạt; thơm dịu mùi táo xanh, lê tươi, chanh vàng và hoa trắng; vị khô (dry), thanh mảnh, chua mát sảng khoái (crisp)."}, {"name": "2. Miguel Torres, Hemisferio Sur Sauvignon Blanc", "sub": "239K/Ly • 669K/Bình • 1,049K/Chai | Central Valley, Chile", "img": "wine_sauvignon_blanc", "badge": "Chile • Hợp Hải Sản", "points": ["Xuất xứ & Giống nho: Central Valley, Chile (từ gia tộc làm vang danh tiếng Miguel Torres) – Giống nho Sauvignon Blanc.", "Phương pháp ủ: Lên men lạnh trong bồn thép không gỉ để giữ trọn các hợp chất hương thơm tự nhiên.", "Cách uống & Kết hợp món: Ướp lạnh 8–10°C; lựa chọn số 1 cho Hải sản (Mussels in Pepper Sauce, Seafood Pizza, Grand Seafood Pasta) và Passion Fruit Salmon."], "flavor": "Hương thơm bùng nổ, sắc nét của bưởi chùm, chanh dây, ổi, cỏ mới cắt và thảo mộc xanh; vị chua giòn sảng khoái (zesty acidity), hậu vị sạch."}, {"name": "3. Alois Lageder, Gewürztraminer", "sub": "1,219K/Chai | Gewürztraminer – Trentino-Alto Adige, Ý", "img": "wine_gewurztraminer", "badge": "Cực Kỳ Thơm", "points": ["Xuất xứ & Giống nho: Vùng núi Alps Trentino-Alto Adige (cực Bắc nước Ý, quê hương gốc của làng Tramin) – Giống nho Gewürztraminer ('Gewürz' nghĩa là gia vị thơm).", "Phương pháp ủ: Canh tác sinh học, lên men bồn thép và ủ trên xác nấm men mịn (sur lie) vài tháng để tăng độ sánh.", "Cách uống & Kết hợp món: Ướp lạnh 10–12°C; cực hợp với món có chút cay hoặc béo như Arancini 'Nduja, phô mai xanh Gorgonzola, tôm nướng tỏi và khách yêu thích vang trắng thơm ngát."], "flavor": "Một trong những giống nho thơm quyến rũ nhất thế giới! Nồng nàn mùi trái vải thiều (lychee), cánh hoa hồng, xoài chín, gừng và nhục đậu khấu; vị tròn đầy, sánh mượt, độ chua thấp."}, {"name": "4. Masi, Levarie, Soave Classico DOC", "sub": "1,479K/Chai | Giống nho: Garganega – Vùng Veneto, Ý", "img": "wine_soave", "badge": "Veneto • DOC", "points": ["Xuất xứ & Giống nho: Vùng đất núi lửa cổ Soave Classico, Veneto (Đông Bắc Ý) – Giống nho bản địa Garganega.", "Phương pháp ủ: Lên men lạnh trong bồn thép không gỉ từ những vườn nho đồi núi lửa lâu đời.", "Cách uống & Kết hợp món: Ướp lạnh 10°C; rất hợp với Burrata Salad, Caprese, mì sốt thịt cua (Crab Meat Sauce), sốt Pesto và nấm."], "flavor": "Màu vàng rơm ánh xanh; thơm thanh lịch mùi hoa cơm cháy, đào trắng, lê chín, khoáng chất (mineral) và hậu vị hạnh nhân đắng nhẹ (bitter almond) đặc trưng."}, {"name": "5. Banfi, Le Rime, IGT Tuscany", "sub": "1,369K/Chai | Chardonnay & Pinot Grigio – Tuscany, Ý", "img": "wine_chardonnay", "badge": "Tuscany • Blend", "points": ["Xuất xứ & Giống nho: Vùng Tuscany, Ý – Sự phối trộn (Blend) thông minh giữa Chardonnay (cho độ béo tròn) và Pinot Grigio (cho độ chua thanh mát).", "Phương pháp ủ: Lên men lạnh trong bồn thép không gỉ.", "Cách uống & Kết hợp món: Ướp lạnh 10°C; hợp với mì sốt kem (Creamy Carbonara, Creamy Mushrooms), Pizza nền trắng và hải sản."], "flavor": "Kết hợp hài hòa hương táo vàng, dứa chín của Chardonnay với hương cam chanh, hoa trắng của Pinot Grigio; vị vừa tươi mát vừa tròn trịa."}], "narration": "Học phần 2D: Năm chai rượu vang trắng trong menu, luôn phục vụ ướp lạnh từ 8 đến 12 độ C. Một là Terre Forti Pinot Grigio thanh mảnh, vị táo xanh chanh vàng. Hai là Miguel Torres Sauvignon Blanc từ Chile, chua giòn sảng khoái hương bưởi và chanh dây, cực hợp hải sản. Ba là Alois Lageder Gewurztraminer vùng Bắc Ý, nồng nàn hương vải thiều và cánh hoa hồng. Bốn là Masi Levarie Soave Classico từ nho Garganega trên đất núi lửa. Năm là Banfi Le Rime vùng Tuscany phối trộn giữa Chardonnay béo tròn và Pinot Grigio thanh mát.", "audio_key": "slide_07"}, {"id": 8, "section": "HỌC PHẦN 2E • VANG SỦI & VANG HỒNG", "title": "Rượu Vang Sủi Bọt (Sparkling) & Vang Hồng (Rosé)", "subtitle": "3 chai vang khai vị và tiệc tùng sảng khoái nhất trong thực đơn (Trang 9)", "items": [{"name": "1. I Castelli Romeo e Giulietta, Cuvée Golden Heart", "sub": "198K/Ly • 509K/Bình • 929K/Chai | Giống nho: Glera – Italy", "img": "wine_prosecco", "badge": "Sparkling • Glera", "points": ["Xuất xứ & Giống nho: Vùng Veneto, Ý (quê hương chuyện tình Romeo & Juliet tại Verona) – Giống nho Glera (chính là giống nho làm nên rượu Prosecco trứ danh).", "Phương pháp ủ: Phương pháp Charmat (Lên men lần 2 tạo bọt tự nhiên trong bồn thép kín áp suất cao) để giữ trọn hương trái cây tươi mới.", "Cách uống & Kết hợp món: Ướp thật lạnh (6–8°C) trong ly Flute thon dài; dùng khai vị đầu bữa tiệc hoặc ăn kèm đồ chiên giòn, thịt nguội."], "flavor": "Bọt sủi sống động; thơm mùi táo xanh, lê trắng, đào và hoa keo; vị chua ngọt dịu hài hòa (Extra Dry), nhẹ nhàng, tươi vui."}, {"name": "2. Ca’ del Bosco, Franciacorta Cuvée Prestige Brut DOCG", "sub": "3,179K/Chai | Chardonnay, Pinot Nero, Pinot Bianco – Lombardia, Ý", "img": "wine_franciacorta", "badge": "Champagne Của Ý • DOCG", "points": ["Xuất xứ & Giống nho: Vùng Franciacorta, Lombardia (Bắc Ý) – Phối trộn Chardonnay (75–80%), Pinot Nero (Pinot Noir), Pinot Bianco. Dòng vang sủi đẳng cấp số 1 nước Ý, sánh ngang Champagne Pháp.", "Phương pháp ủ: Phương pháp truyền thống Metodo Classico – lên men lần 2 trực tiếp trong từng chai và ủ cùng nấm men tối thiểu 24–25 tháng.", "Cách uống & Kết hợp món: Ướp lạnh 6–8°C; tuyệt hảo khi đi cùng Parma Ham 24 tháng, Burrata, hải sản cao cấp hoặc nâng ly kỷ niệm."], "flavor": "Dải bọt nhỏ li ti mịn như kem; hương thơm sang trọng của cam chanh, đào trắng hòa quyện cùng mùi bánh mì hoa cúc nướng (brioche), bơ và hạnh nhân; vị khô sắc sảo (Brut)."}, {"name": "3. Moulin de Gassac, Figaro Rosé IGP", "sub": "936K/Chai | Shiraz, Grenache, Carignan – Pays d’Hérault, Pháp", "img": "wine_rose", "badge": "Rosé • Miền Nam Pháp", "points": ["Xuất xứ & Giống nho: Vùng Pays d’Hérault (Languedoc, miền Nam nước Pháp) – Phối trộn 3 giống nho Địa Trung Hải: Shiraz (Syrah), Grenache, Carignan.", "Phương pháp ủ: Ngâm vỏ nho đỏ ngắn giờ (Direct pressing / Bleeding) để lấy sắc hồng cá hồi lấp lánh, sau đó lên men lạnh trong bồn thép.", "Cách uống & Kết hợp món: Ướp lạnh 8–10°C; cực kỳ đa năng, hợp với cả bàn tiệc gồm Salad, Pizza, Cold Cuts lẫn Hải sản."], "flavor": "Thơm ngát mùi dâu tây tươi, quả mâm xôi đỏ, bưởi hồng và chút hoa trắng; vị khô thanh thoát, chua dịu, mát lạnh như gió biển Địa Trung Hải."}], "narration": "Học phần 2E: Rượu vang sủi bọt và vang hồng. Chai sủi đầu tiên là Romeo e Giulietta Cuvee Golden Heart làm từ nho Glera theo phương pháp Charmat, bọt sủi tươi vui hương táo lê đào. Chai thứ hai là Ca del Bosco Franciacorta DOCG, đẳng cấp sánh ngang Champagne Pháp, ủ trong chai hơn 24 tháng cho bọt mịn như kem và hương bánh mì nướng bơ. Chai vang hồng duy nhất là Moulin de Gassac Figaro Rose từ miền Nam nước Pháp, thơm ngát dâu tây và bưởi hồng.", "audio_key": "slide_08"}, {"id": 9, "section": "HỌC PHẦN 3A • RƯỢU MẠNH & RƯỢU MÙI", "title": "Rượu Mạnh (Spirits) & Rượu Khai Vị Ý (Aperitifs)", "subtitle": "Xuất xứ, nguyên liệu, cách chưng cất/ngâm ủ và hương vị 7 dòng rượu nền trong menu", "items": [{"name": "Aperol (Rượu mùi khai vị cam đắng)", "sub": "Padua (Veneto, Ý) • Ra đời năm 1919 • 11% ABV", "img": "spirit_aperol", "badge": "Aperitivo Số 1 Ý", "points": ["Nguyên liệu & Cách làm: Ngâm ủ (infusion) cồn tinh khiết cùng cam đắng, cam ngọt, rễ cây đại hoàng (rhubarb), rễ cây long đởm (gentian) và thảo mộc.", "Nét đặc trưng: Màu cam rực rỡ biểu tượng mùa hè nước Ý; nồng độ cồn rất nhẹ (11% ABV), dùng pha Aperol Spritz và Aperol Soda."], "flavor": "Ngọt dịu đi trước, đắng nhẹ thanh tao ở hậu vị và thơm lừng mùi tinh dầu vỏ cam tươi."}, {"name": "Campari (Rượu đắng thảo mộc khai vị)", "sub": "Novara / Milan (Ý) • Ra đời năm 1860 • 20.5–28.5% ABV", "img": "spirit_campari", "badge": "Bitter Aperitivo", "points": ["Nguyên liệu & Cách làm: Ngâm ủ hơn 60 loại thảo mộc, vỏ cây cascarilla, thảo quả và đặc biệt là quả cam đắng Chinotto theo công thức bí truyền.", "Nét đặc trưng: Màu đỏ hồng ngọc thẫm; nồng độ cồn mạnh gấp đôi Aperol, là linh hồn của Negroni, Americano và Campari Spritz."], "flavor": "Đắng thảo mộc mạnh mẽ, sâu sắc, ít ngọt hơn Aperol, thơm nồng vỏ cam đắng, rễ cây và gia vị ấm – dành cho gu trưởng thành."}, {"name": "Vermouth (Rượu vang cường hóa ngâm thảo mộc)", "sub": "Turin (Piedmont, Bắc Ý) • Ra đời năm 1786 • 15–18% ABV", "img": "spirit_vermouth", "badge": "Fortified Wine", "points": ["Nguyên liệu & Cách làm: Lấy rượu vang làm nền, pha thêm rượu mạnh để nâng độ cồn (fortified), thêm đường caramel và ngâm cùng cây ngải cứu (wormwood), quế, đinh hương, bạch đậu khấu, vỏ cam.", "Nét đặc trưng: Bản dùng trong Americano và Negroni là Sweet Red Vermouth (Vermouth Rosso) màu đỏ nâu."], "flavor": "Ngọt dịu, đắng nhẹ thanh lịch và thơm nồng gia vị thảo mộc cổ điển châu Âu."}, {"name": "Gin (Rượu chưng cất quả bách xù)", "sub": "Hà Lan / Anh Quốc • ~40% ABV", "img": "spirit_gin", "badge": "Spirit • Phổ biến TG", "points": ["Nguyên liệu & Cách làm: Rượu nền ngũ cốc chưng cất lại cùng quả bách xù (Juniper berries – nguyên liệu bắt buộc) và thảo mộc (hạt mùi, vỏ chanh, bạch đậu khấu); không ủ thùng gỗ nên trong suốt.", "Ứng dụng trong menu: Dùng pha Gin Tonic và Classic Negroni."], "flavor": "Thơm mát lạnh mùi rừng thông, nhựa quả bách xù, thảo mộc và vỏ cam chanh; vị khô (dry) sắc nét."}, {"name": "Vodka (Rượu trắng tinh khiết)", "sub": "Đông Âu & Bắc Âu (Nga, Ba Lan) • 40% ABV", "img": "spirit_vodka", "badge": "Spirit • Phổ biến TG", "points": ["Nguyên liệu & Cách làm: Lên men từ lúa mì, lúa mạch đen hoặc khoai tây, chưng cất liên tục nhiều lần và lọc qua than hoạt tính để đạt độ tinh khiết tối đa, không ủ gỗ.", "Ứng dụng trong menu: Dùng pha Vodka Tonic và Fruity Sangria."], "flavor": "Trong suốt, không màu, hầu như không mùi, vị cồn sạch, êm và ấm nhẹ giúp tôn vinh hương vị trái cây pha kèm."}, {"name": "Whiskey & Rhum (Rum)", "sub": "2 dòng rượu mạnh ủ thùng gỗ sồi kinh điển", "img": "spirit_whiskey", "badge": "Ủ Gỗ Sồi", "points": ["Whiskey (Scotland/Ireland/Mỹ): Chưng cất từ ngũ cốc (lúa mạch mạch nha, ngô, lúa mạch đen) và ủ nhiều năm trong thùng gỗ sồi cháy; dùng pha Whiskey & Soda.", "Rhum / Rum (Vùng biển Caribbean/Cuba): Chưng cất từ mật mía hoặc nước mía tươi ép, ủ bồn thép/thùng sồi; dùng pha Traditional Mojito và Cuba Libre."], "flavor": "Whiskey mang hương gỗ sồi nướng, vani, caramel và khói ấm; Rhum mang vị ngọt dịu nhiệt đới của mía đường, vani và trái cây chín."}], "narration": "Học phần 3A: Rượu mạnh và rượu mùi khai vị. Gin chưng cất cùng quả bách xù thơm mùi rừng thông. Vodka tinh khiết không màu không mùi. Whiskey chưng cất từ ngũ cốc và ủ thùng gỗ sồi cháy thơm mùi vani khói. Rhum làm từ mật mía vùng Caribbean có hậu vị ngọt dịu. Về rượu khai vị Ý: Aperol màu cam sáng, nhẹ 11 độ, vị ngọt dịu đắng nhẹ hương cam. Campari màu đỏ thẫm, nồng độ mạnh gấp đôi Aperol, vị đắng thảo mộc sâu sắc. Và Vermouth là rượu vang cường hóa ngâm thảo mộc vùng Turin.", "audio_key": "slide_09"}, {"id": 10, "section": "HỌC PHẦN 3B • COCKTAILS & ĐỒ UỐNG", "title": "Cocktails Kinh Điển, Cà Phê Ý, Nước Khoáng & Bia Âu", "subtitle": "Công thức pha chế, nguồn gốc và hương vị các thức uống trong thực đơn (Trang 4–6)", "banner_img": "cocktails_banner", "items": [{"name": "Aperol Spritz & Campari Spritz", "sub": "208K/Ly • 828K/Bình | Aperol/Campari, Prosecco, Soda, Cam tươi", "img": "drink_aperol_spritz", "badge": "Khai Vị Ý • 3-2-1", "points": ["Nguồn gốc: Biểu tượng văn hóa uống khai vị chiều (Aperitivo) vùng Veneto – Bắc Ý.", "Công thức vàng 3-2-1: 3 phần vang sủi Prosecco + 2 phần Aperol (hoặc Campari) + 1 phần Soda + lát cam tươi (bản Aperol/Campari Soda 167K/Ly không có Prosecco)."], "flavor": "Sủi bọt mát lạnh, chua ngọt hương cam tươi điểm chút đắng nhẹ kích thích tiêu hóa trước bữa ăn (Aperol ngọt dịu; Campari đắng đậm hơn)."}, {"name": "Classic Negroni & Signature Americano", "sub": "149K/Ly • 556K/Bình | 2 huyền thoại Cocktail nước Ý", "img": "drink_negroni", "badge": "Milan & Florence", "points": ["Signature Americano (Milan, 1860s): Campari + Sweet Vermouth + Soda + cam tươi – nồng độ nhẹ, có ga mát lạnh.", "Classic Negroni (Florence, 1919): Bá tước Camillo Negroni yêu cầu thay Soda trong ly Americano bằng rượu Gin theo tỷ lệ 1:1:1 (Gin + Campari + Sweet Vermouth)."], "flavor": "Negroni mạnh mẽ, đắng thảo mộc sâu sắc quyện hương bách xù của Gin và hậu vị ngọt ấm của Vermouth đỏ."}, {"name": "Fruity Sangria, Mojito & Cuba Libre", "sub": "135K–149K/Ly • 523K–556K/Bình | Cocktails quốc tế", "img": "drink_sangria", "badge": "Sảng Khoái", "points": ["Fruity Sangria (Tây Ban Nha): Vang đỏ + Vodka + Trái cây tươi cắt hạt lựu + Đường.", "Traditional Mojito (Cuba): Rhum + Soda + Chanh tươi + Đường + Lá bạc hà tươi dập.", "Cuba Libre & Highballs: Cuba Libre (Rhum + Coke + Chanh); Gin Tonic, Vodka Tonic, Whiskey & Soda (149K/Ly)."], "flavor": "Sangria ngọt mát đậm vị trái cây ngấm rượu vang; Mojito chua ngọt thanh mát hương bạc hà; Cuba Libre ngọt dịu hương cola – mía đường."}, {"name": "Cà Phê Ý (Espresso, Macchiato, Cappuccino, Latte)", "sub": "49K – 68K | Chuẩn nghệ thuật Barista Ý (Trang 4)", "img": "drink_cappuccino", "badge": "Italian Coffee", "points": ["Espresso (49K): Chiết xuất áp suất cao 9 bar, lớp bọt dầu nâu hạt dẻ (crema) sánh mịn, vị đậm đặc.", "Macchiato (53K - 'vệt đốm'): 1 shot Espresso điểm một muỗng nhỏ bọt sữa nóng lên trên để làm dịu vị đắng.", "Cappuccino / Latte (68K): Cappuccino có tỷ lệ 1:1:1 với lớp bọt sữa dày bông xốp; Latte nhiều sữa nóng hơn, béo sữa nhẹ nhàng."], "flavor": "Đậm đà hương cà phê rang mộc chuẩn Ý hòa quyện vị ngọt béo tự nhiên của sữa tươi đánh nóng."}, {"name": "Nước Khoáng Ý (Acqua Panna & San Pellegrino) & Bia Âu", "sub": "Nước khoáng di sản & Bia lúa mì châu Âu (Trang 4)", "img": "drink_san_pellegrino", "badge": "Châu Âu", "points": ["Acqua Panna (98K/139K): Nước khoáng thiên nhiên KHÔNG GA (Still) từ vùng đồi Tuscany, vị mềm mượt như nhung.", "San Pellegrino (98K/139K): Nước khoáng CÓ GA tự nhiên (Sparkling) từ chân núi Alps vùng Bergamo (Lombardy), làm sạch vòm họng giữa các món ăn.", "Edelweiss (78K - Áo) & Hoegaarden White (105K - Bỉ): Bia lúa mì ủ cùng thảo mộc núi Alpine (Edelweiss) hoặc vỏ cam Curaçao & hạt mùi (Hoegaarden), vị êm mượt thơm hương hoa quả."]}, {"name": "Nhóm Trà Đá & Trà Sữa (Iced Teas – Trang 5)", "sub": "65K – 74K | 4 lựa chọn giải khát trẻ trung", "img": "caramel_hazelnut_milk_tea", "badge": "Iced Teas", "points": ["Black Milk Tea (74K): Trà sữa đen truyền thống kèm trân châu dai (boba) và thạch.", "Caramel & Hazelnut Milk Tea (74K): Trà sữa kem quyện sốt caramel và siro hạt phỉ (hazelnut) thơm bùi.", "Green Milk Tea (74K) & Fresh Lemon Tea (65K): Trà sữa xanh Thái Lan và Trà chanh tươi mát lạnh."]}], "narration": "Học phần 3B: Cocktails, cà phê Ý và đồ uống. Nổi bật nhất là văn hóa uống khai vị Aperitivo với Aperol Spritz và Campari Spritz pha theo tỷ lệ 3 phần Prosecco, 2 phần rượu mùi và 1 phần Soda. Classic Negroni pha tỷ lệ 1:1:1 gồm Gin, Campari và Vermouth đỏ. Ngoài ra còn có Americano, Fruity Sangria, Mojito và Cuba Libre. Về nước khoáng Ý có Acqua Panna không ga và San Pellegrino có ga tự nhiên, cùng bia lúa mì Áo Edelweiss và bia trắng Bỉ Hoegaarden.", "audio_key": "slide_10"}, {"id": 11, "section": "HỌC PHẦN 4A • CÁC LOẠI MÌ Ý (PASTA SHAPES)", "title": "8 Loại Sợi Mì & Viên Mì Ý Thủ Công (Trang 31–33)", "subtitle": "Nguồn gốc vùng miền, kỹ thuật nhào/cán/ép khuôn đồng và khả năng bám sốt", "items": [{"name": "Pici Maremmani (Mì se tay truyền thống Tuscany)", "sub": "99K | Đặc sản vùng Maremma & Siena – Quê hương nhà sáng lập", "img": "pasta_pici", "badge": "Se Tay Thủ Công", "points": ["Nguồn gốc: Vùng Maremma (Tuscany); chữ 'Pici' có nghĩa là kéo/se sợi bằng tay.", "Cách làm đặc trưng: Chỉ dùng bột mì và nước ấm (không dùng trứng), cán dẹt, cắt dải rồi dùng hai lòng bàn tay lăn/se từng sợi một trên bàn gỗ.", "Nét đặc trưng: Sợi mì tròn, mập và dày hơn Spaghetti nhiều, bề mặt thô nhám tự nhiên, độ dai dẻo (chewy) cực đã miệng; hợp nhất với Ragù, Carbonara, Taleggio & Truffle."]}, {"name": "Classic Spaghetti (Mì sợi tròn ép khuôn đồng)", "sub": "99K | Truyền thống vùng Naples (Nam Ý)", "img": "pasta_spaghetti", "badge": "Ép Khuôn Đồng", "points": ["Nguồn gốc: Miền Nam nước Ý ('spago' nghĩa là sợi dây nhỏ).", "Cách làm đặc trưng: Làm từ bột lúa mì cứng (Durum wheat semolina), ép đùn qua khuôn đồng (Bronze-die extruded) và sấy chậm.", "Nét đặc trưng: Khuôn đồng tạo lớp bề mặt nhám mờ màu trắng phấn, giúp nước sốt bám chặt vào từng sợi mì; hợp với sốt hải sản (Vongole, Grand Seafood) và sốt cà chua."]}, {"name": "Green Spinach Linguine (Mì sợi dẹt cải bó xôi)", "sub": "99K | Xuất xứ vùng Liguria (Bắc Ý)", "img": "pasta_spinach_linguine", "badge": "Mì Dẹt Tươi", "points": ["Tên gọi & Cách làm: 'Linguine' nghĩa là những cái lưỡi nhỏ; mì tươi thủ công trộn lá cải bó xôi (spinach) xay nhuyễn vào bột tạo màu xanh ngọc tự nhiên.", "Nét đặc trưng: Sợi mì dẹt bản nhỏ giữ sốt kem, sốt Pesto và sốt hải sản cực kỳ tốt."]}, {"name": "Black Ink Spaghetti (Spaghetti al Nero di Seppia)", "sub": "99K | Đặc sản vùng Venice (Veneto) & Sicily", "img": "pasta_black_ink", "badge": "Túi Mực Tươi", "points": ["Cách làm đặc trưng: Nhào bột mì trực tiếp với túi mực đen tự nhiên của con mực nang (squid/cuttlefish ink).", "Nét đặc trưng: Sợi mì màu đen bóng sang trọng, phảng phất vị mặn mòi tinh tế của biển cả; sinh ra để ghép với sốt hải sản, nghêu, tôm, thịt cua."]}, {"name": "Penne Rigate & Classic Rigatoni", "sub": "99K | 2 dòng Nui ống có rãnh khía giữ sốt", "img": "pasta_rigatoni", "badge": "Nui Ống Khía", "points": ["Penne Rigate: Ống nhỏ cắt vát chéo 45 độ như 'ngòi bút lông vũ' (Penne) có đường rãnh khía dọc (Rigate) giúp giữ sốt có thịt/rau củ cắt nhỏ (Arrabbiata, Spicy Tuna).", "Classic Rigatoni (vùng Rome): Ống trụ thẳng, đường kính ống to và thành dày; là cặp bài trùng kinh điển của người Rome với sốt Carbonara, Ragù hoặc sốt phô mai đặc."]}, {"name": "Pumpkin Cappelletti & Hand-Made Gnocchi", "sub": "109K & 99K | Mì gói nhân bí đỏ & Mì viên khoai tây", "img": "pasta_cappelletti", "badge": "Nghệ Nhân Thủ Công", "points": ["Pumpkin Cappelletti (109K - Emilia-Romagna): Lá bột mì trứng cán mỏng, nhồi nhân bí đỏ nướng kem mịn & Parmesan, gấp thủ công thành hình 'những chiếc mũ nhỏ' (Cappelletti).", "Hand-Made Gnocchi (99K - Bắc Ý): Khoai tây luộc chín nghiền mịn trộn bột mì, cắt viên nhỏ và lăn tạo vân; kết cấu mềm xốp như mây, hợp với sốt Gorgonzola, Pesto, Burrata."]}], "narration": "Học phần 4A: Tám loại mì Ý trong menu. Đặc biệt nhất là Pici Maremmani, mì sợi tròn to được se hoàn toàn bằng tay theo truyền thống vùng Tuscany. Classic Spaghetti được ép qua khuôn đồng tạo bề mặt nhám giúp bám sốt hoàn hảo. Green Spinach Linguine là mì dẹt trộn cải bó xôi. Black Ink Spaghetti là mì trộn túi mực đen thơm vị biển. Penne Rigate và Rigatoni là hai dòng nui ống có rãnh khía giữ sốt đặc. Pumpkin Cappelletti là mì gói tay hình chiếc mũ nhân bí đỏ Parmesan, và Gnocchi là mì viên khoai tây mềm xốp.", "audio_key": "slide_11"}, {"id": 12, "section": "HỌC PHẦN 4B • NƯỚC SỐT MÌ Ý (PHẦN 1)", "title": "Nước Sốt Mì Ý: Truyền Thống, Carbonara & Sốt Kem", "subtitle": "Mô tả chi tiết hương vị, nguyên liệu và sự khác biệt giữa 2 dòng Carbonara (Trang 36–40)", "items": [{"name": "Original Carbonara Sauce (Chuẩn vị Rome)", "sub": "+169K | Guanciale, Lòng đỏ trứng, Pecorino Romano (Trang 40)", "img": "sauce_original_carbonara", "badge": "Chuẩn Rome 100%", "points": ["Nguồn gốc & Quy tắc vàng: Biểu tượng của thủ đô Rome (Lazio) – tuyệt đối KHÔNG dùng kem tươi hay tỏi.", "Cách chế biến: Đánh nhũ tương (emulsification) giữa lòng đỏ trứng gà, phô mai sữa cừu Pecorino Romano ủ lâu năm, mỡ má heo muối Guanciale thắng giòn và nước luộc mì."], "flavor": "Đậm sắc nét (bold & authentic), mặn thơm chiều sâu của phô mai cừu Pecorino, sánh mượt như lụa từ lòng đỏ trứng và giòn rụm thơm ngậy của má heo Guanciale."}, {"name": "Creamy Carbonara (Biến tấu kem tươi hiện đại)", "sub": "+169K | Crispy Bacon, Kem tươi, Lòng đỏ trứng, Parmigiano, Tỏi", "img": "sauce_creamy_carbonara", "badge": "Béo Mịn Dễ Ăn", "points": ["Nguyên liệu & Cách nấu: Sử dụng thịt ba chỉ xông khói (Crispy Bacon), kem tươi (fresh cream), lòng đỏ trứng, phô mai Parmigiano và hương tỏi phi."], "flavor": "Nhiều sốt hơn, béo ngậy vị kem sữa mềm mại (rich & velvety), ít mặn gắt hơn bản Original, dậy mùi khói của Bacon và hương tỏi quen thuộc."}, {"name": "Italian Classic Ragù", "sub": "+131K | Sốt thịt heo bằm hầm chậm kiểu truyền thống", "img": "sauce_ragu", "badge": "Hầm Chậm", "points": ["Nguồn gốc & Cách nấu: Truyền thống vùng Emilia-Romagna / Tuscany; thịt heo bằm xào săn rồi hầm chậm nhiều giờ (slow-cooked) cùng cà chua chín và thảo mộc."], "flavor": "Đậm đà vị ngọt thịt hầm (savory & hearty), chua ngọt dịu của cà chua chín quyện hương thảo mộc ấm áp chuẩn vị bếp nhà nước Ý."}, {"name": "Classic Meatballs Sauce", "sub": "+198K | Thịt viên Polpette hầm sốt cà chua húng quế", "img": "sauce_meatballs", "badge": "Comfort Sauce", "points": ["Nguyên liệu & Cách nấu: Những viên thịt heo tẩm gia vị Ý (Polpette) được nấu chậm trong sốt cà chua đậm đà và lá húng quế tươi."], "flavor": "Viên thịt mềm mọng nước, thấm đẫm sốt cà chua chua ngọt đậm đà và hương húng quế tươi mát."}, {"name": "Creamy Mushrooms", "sub": "+169K | Sốt kem nấm đùi gà, Parmigiano & Dầu Truffle", "img": "sauce_creamy_mushrooms", "badge": "Hương Truffle", "points": ["Nguyên liệu & Cách nấu: Nấm đùi gà tươi (oyster mushrooms) nấu cùng kem tươi, phô mai Parmigiano và hoàn thiện bằng dầu nấm cục (Truffle oil)."], "flavor": "Béo mịn, giòn ngọt tự nhiên của nấm tươi, bùng nổ hương thơm đất rừng sang trọng (earthy & luxurious) từ dầu Truffle."}, {"name": "Arrabbiata with Smoked Bacon & Burrata Tomato", "sub": "+149K & +174K | 2 dòng sốt nền cà chua đặc sắc", "img": "sauce_burrata_tomato", "badge": "Cay Nồng vs Béo Mát", "points": ["Arrabbiata with Smoked Bacon (+149K): 'Arrabbiata' nghĩa là 'Giận dữ' (vùng Rome) – sốt cà chua nấu cùng ớt cay nồng và thịt ба chỉ xông khói.", "Burrata and Tomato Sauce (+174K): Sốt cà chua nấu lá húng quế tươi, khi ra đĩa đặt trực tiếp 1/3 quả phô mai Burrata tươi lên trên mì nóng."], "flavor": "Arrabbiata chua thanh, cay nồng rực lửa quyện vị khói; Burrata Tomato hòa quyện sốt cà chua nóng với kem Burrata lạnh tan chảy béo ngậy."}], "narration": "Học phần 4B: Các loại sốt mì Ý truyền thống và sốt kem. Cần phân biệt rõ hai loại Carbonara: Original Carbonara chuẩn vị Rome chỉ dùng má heo muối Guanciale, lòng đỏ trứng và phô mai cừu Pecorino Romano, tuyệt đối không dùng kem tươi. Còn Creamy Carbonara dùng thịt xông khói Bacon, kem tươi, Parmigiano và tỏi nên béo ngậy vị kem sữa. Ngoài ra có Italian Classic Ragu hầm chậm từ thịt heo và cà chua, sốt thịt viên Meatballs, sốt nấm đùi gà dầu Truffle, sốt cay Arrabbiata và sốt cà chua đặt phô mai Burrata tươi.", "audio_key": "slide_12"}, {"id": 13, "section": "HỌC PHẦN 4C • NƯỚC SỐT MÌ Ý (PHẦN 2) & MÌ ĐẶC BIỆT", "title": "Nước Sốt Mì Ý: Phô Mai, Pesto & Hải Sản Đại Dương", "subtitle": "Mô tả chi tiết hương vị 7 loại sốt cao cấp và món Mì Đặc Biệt (Trang 37–41)", "items": [{"name": "Taleggio and Truffle Sauce", "sub": "+209K | Phô mai Taleggio, Sốt nấm Truffle đen & Hạt điều", "img": "sauce_taleggio_truffle", "badge": "Thượng Hạng", "points": ["Nguyên liệu & Cách nấu: Phô mai rửa vỏ Taleggio nấu chảy mịn cùng sốt nấm cục đen (Black truffle paste), rắc hạt điều nghiền giòn (crushed cashews)."], "flavor": "Cực kỳ sánh ngậy, đậm vị bơ sữa của Taleggio, quyện hương thơm nồng nàn quý phái của nấm Truffle đen và độ bùi ngọt giòn rụm của hạt điều."}, {"name": "Gorgonzola and Balsamic Sauce", "sub": "+163K | Phô mai xanh Gorgonzola, Giấm Balsamic & Óc chó", "img": "sauce_gorgonzola_balsamic", "badge": "Béo & Chua Ngọt", "points": ["Nguyên liệu & Cách nấu: Phô mai xanh Gorgonzola nấu kem mịn, điểm chút giấm đen Balsamic cô đặc và rắc hạt óc chó nghiền."], "flavor": "Bản giao hưởng đối lập: vị béo ngậy, mặn nồng của phô mai xanh Gorgonzola được cân bằng bởi vị chua ngọt thanh của Balsamic và độ bùi của óc chó."}, {"name": "Basil and Walnuts Pesto", "sub": "+186K | Húng quế tươi, Hạt óc chó, Parmesan & Kem", "img": "sauce_walnut_pesto", "badge": "Biến Tấu Liguria", "points": ["Nguồn gốc & Cách làm: Biến tấu từ Pesto alla Genovese vùng Liguria; lá húng quế tươi xay mịn cùng hạt óc chó, phô mai Parmesan và kem."], "flavor": "Thơm ngát mùi thảo mộc tươi mát của lá húng quế, quyện kết cấu kem sánh và vị béo bùi đậm đà (nutty) của quả óc chó."}, {"name": "Vongole in White Wine & Grand Seafood Sauce", "sub": "+139K & +198K | Hải sản xào rượu vang trắng & Dầu EVO", "img": "sauce_grand_seafood", "badge": "Hương Vị Biển", "points": ["Vongole in White Wine (+139K): Nghêu tươi sống xào lửa lớn với tỏi, ngò tây (parsley) và rượu vang trắng.", "Grand Seafood Sauce (+198K): Hỗn hợp Vẹm, Nghêu và Tôm tươi xào cùng rượu vang trắng, dầu ô liu EVO, tỏi tươi và tiêu đen."], "flavor": "Ngọt lịm tự nhiên từ nước tiết của nghêu – vẹm – tôm, thơm nồng tỏi phi, hương chua dịu bay bổng của vang trắng và cay ấm nhẹ của tiêu đen."}, {"name": "Crab Meat Sauce & Spicy Atlantic Tuna", "sub": "+219K & +127K | Sốt thịt cua dịu nhẹ & Sốt cá ngừ cay", "img": "sauce_crab_meat", "badge": "Sốt Cua Đắt Nhất", "points": ["Crab Meat Sauce (+219K): Thịt cua gỡ tươi mềm nấu trong sốt cà chua thanh nhẹ (light tomato sauce), tỏi và tiêu đen.", "Spicy Atlantic Tuna (+127K): Cá ngừ Đại Tây Dương nấu sốt cà chua đậm đà cùng ô liu đen và ớt cay."], "flavor": "Sốt cua ngọt thanh tinh tế trên nền cà chua dịu nhẹ; Sốt cá ngừ đậm đà, mặn bùi ô liu đen và cay nồng kích thích."}, {"name": "Special Pasta: Black Ink Spaghetti with Prawns & Clams", "sub": "329K | Mì mực đen sốt vang trắng, Tôm nướng tỏi & Nghêu (Trang 41)", "img": "special_black_ink_prawns", "badge": "Món Mì Đặc Biệt", "points": ["Đặc trưng: Món mì hoàn chỉnh duy nhất được thiết kế sẵn – sợi mì mực đen kết hợp tôm nướng thơm tỏi và nghêu tươi trong sốt rượu vang trắng."], "flavor": "Cộng hưởng kép của đại dương: sợi mì mực đen dai ngon thoảng vị biển, quyện sốt vang trắng nghêu ngọt thanh và tôm nướng tỏi dậy mùi khói nhẹ."}], "narration": "Học phần 4C: Sốt phô mai, Pesto và sốt hải sản. Sốt Gorgonzola kết hợp giấm Balsamic và hạt óc chó tạo vị mặn béo, chua ngọt và bùi giòn. Sốt Basil và Walnuts Pesto thơm mát lá húng quế quyện óc chó béo ngậy. Đẳng cấp nhất là sốt Taleggio và nấm Truffle đen rắc hạt điều. Nhóm hải sản có Vongole nghêu xào vang trắng thanh khiết, Grand Seafood gồm vẹm nghêu tôm, sốt thịt cua Crab Meat dịu nhẹ, sốt cá ngừ cay Đại Tây Dương, và món mì đặc biệt mực đen tôm nướng tỏi sốt nghêu vang trắng.", "audio_key": "slide_13"}, {"id": 14, "section": "HỌC PHẦN 5A • PIZZA LÒ CỦI NỀN ĐỎ (PIZZA ROSSA)", "title": "Bánh Pizza Nướng Lò Củi: Nhóm Nền Đỏ Sốt Cà Chua", "subtitle": "Mô tả chi tiết hương vị, lịch sử và nguyên liệu 6 bánh Pizza Rossa (Trang 26–29)", "items": [{"name": "1. Classic Margherita Pizza", "sub": "167K | Sốt cà chua, Mozzarella, Lá húng quế tươi", "img": "pizza_margherita", "badge": "Biểu Tượng Naples 1889", "points": ["Nguồn gốc lịch sử: Ra đời năm 1889 tại Naples để dâng lên Hoàng hậu Margherita xứ Savoy, phối 3 màu Quốc kỳ Ý: Đỏ (cà chua) – Trắng (Mozzarella) – Xanh (Húng quế)."], "flavor": "Chuẩn mực của sự tinh tế giản đơn: vị chua thanh tươi mát của sốt cà chua, béo sữa dịu nhẹ của Mozzarella kéo sợi và hương thơm the mát của lá húng quế quyện mùi khói củi."}, {"name": "2. Italian Salami Pizza", "sub": "248K | Sốt cà chua, Mozzarella, Xúc xích Salami Ý cắt mỏng", "img": "pizza_salami", "badge": "Kinh Điển", "points": ["Nét đặc trưng: Phủ kín những lát Salami Ý cắt mỏng; khi nướng lò củi, rìa lát Salami hơi cong lại và tươm lớp mỡ thơm lừng."], "flavor": "Vị chua ngọt hài hòa của sốt cà chua cân bằng hoàn hảo với vị mặn đậm, béo ngậy và thơm nồng tiêu tỏi của xúc xích Salami nướng."}, {"name": "3. Prosciutto Crudo Pizza", "sub": "296K | Sốt cà chua, Mozzarella, Parma Ham 24 tháng & Húng quế", "img": "pizza_prosciutto_crudo", "badge": "Parma Ham 24 Tháng", "points": ["Kỹ thuật phục vụ: 'Prosciutto Crudo' là đùi heo muối ăn sống; bánh nướng chín với sốt cà chua và Mozzarella, khi ra lò mới trải Parma Ham ủ 24 tháng và húng quế tươi lên trên."], "flavor": "Hơi nóng từ đế bánh làm lớp mỡ trắng của Parma Ham hơi tan ra, tạo vị mặn dịu ngọt hậu (umami) quyện trên nền sốt cà chua chua thanh và phô mai béo nóng hổi."}, {"name": "4. Capo Spicy Nduja Pizza", "sub": "339K | Sốt cà chua, Mozzarella, Xúc xích 'Nduja, Salami, Ớt tươi, Dầu ớt", "img": "pizza_capo_nduja", "badge": "Cay Nhất Menu", "points": ["Tên gọi & Nguyên liệu: 'Capo' nghĩa là Ông trùm – hội tụ bộ tứ cay nồng gồm xúc xích phết 'Nduja vùng Calabria, Salami, ớt hiểm tươi và dầu ớt."], "flavor": "Bùng nổ vị cay nồng rực lửa, béo ngậy mỡ heo cay của 'Nduja tan chảy hòa vào sốt cà chua chua thanh và vị đậm đà của Salami."}, {"name": "5. Seafood Feast Pizza", "sub": "339K | Sốt cà chua, Mozzarella, Vẹm, Nghêu & Tôm xào vang trắng", "img": "pizza_seafood", "badge": "Frutti di Mare", "points": ["Cách chế biến: Vẹm, nghêu và tôm được xào chín tới trong rượu vang trắng, dầu ô liu EVO và tỏi trước khi đặt lên nền sốt cà chua và Mozzarella."], "flavor": "Giàu vị ngọt biển cả, thơm nức mùi tỏi phi và rượu vang trắng, hòa quyện cùng vị chua dịu của cà chua và độ béo của phô mai."}, {"name": "6. Ham & Mushrooms Pizza", "sub": "259K | Sốt cà chua, Mozzarella, Thịt nguội Cooked Ham & Nấm đùi gà", "img": "pizza_ham_mushrooms", "badge": "Dễ Ăn • Gia Đình", "points": ["Nguồn gốc: Pizza Prosciutto e Funghi cổ điển – sử dụng thịt nguội nấu chín (Prosciutto Cotto / Cooked Ham) và nấm đùi gà xào thơm."], "flavor": "Vị mặn dịu mềm mại của thịt nguội chín, ngọt mát giòn nhẹ của nấm đùi gà, chua dịu của cà chua và béo mịn của Mozzarella – trẻ em và người lớn đều mê."}], "narration": "Học phần 5A: Bánh Pizza nướng lò củi nhóm nền đỏ sốt cà chua. Classic Margherita ra đời năm 1889 tại Naples mang 3 màu cờ Ý với vị chua thanh cà chua, béo dịu Mozzarella và thơm mát lá húng quế. Italian Salami đậm đà vị xúc xích lên men trên nền cà chua. Prosciutto Crudo phủ thịt đùi heo muối Parma Ham 24 tháng sau khi bánh ra lò. Capo Spicy Nduja là chiếc pizza cay nhất menu với xúc xích cay vùng Calabria. Cùng Seafood Feast hải sản xào vang trắng và Ham Mushrooms dễ ăn cho mọi gia đình.", "audio_key": "slide_14"}, {"id": 15, "section": "HỌC PHẦN 5B • PIZZA LÒ CỦI NỀN TRẮNG (PIZZA BIANCA)", "title": "Bánh Pizza Nướng Lò Củi: Nhóm Nền Trắng & Gourmet", "subtitle": "Mô tả chi tiết hương vị 7 bánh Pizza nền phô mai không dùng sốt cà chua (Trang 26–30)", "items": [{"name": "1. 4 Milks, Honey & Walnuts Pizza", "sub": "249K | Nền kem, Gorgonzola, Mozzarella, Parmesan, Hạt óc chó & Mật ong", "img": "pizza_4_milks", "badge": "Béo Ngọt Quyến Rũ", "points": ["Nguyên liệu: Biến tấu từ Quattro Formaggi trên nền kem trắng cùng Gorgonzola, Mozzarella, Parmesan, phủ hạt óc chó nghiền và rưới mật ong."], "flavor": "Sự cân bằng tuyệt mỹ: vị mặn béo nồng nàn của các tầng phô mai được làm dịu bởi vị ngọt thanh của mật ong và độ giòn bùi của hạt óc chó."}, {"name": "2. Mortadella & Pistachios Pizza", "sub": "319K | Nền Mozzarella, Thịt nguội Mortadella, Hạt dẻ cười & Balsamic", "img": "pizza_mortadella", "badge": "Gourmet Thời Thượng", "points": ["Nguyên liệu: Một trong những dòng Pizza Gourmet hot nhất nước Ý hiện nay: nền Mozzarella trắng, Mortadella thái mỏng, hạt dẻ cười giòn và giấm Balsamic cô đặc."], "flavor": "Béo mịn như nhung từ nền Mozzarella và Mortadella thơm gia vị, điểm xuyết độ bùi giòn sần sật của hạt dẻ cười và nét chua ngọt thanh thoát của Balsamic."}, {"name": "3. Taleggio, Truffle & Cashew Pizza", "sub": "395K | Mozzarella, Taleggio, Sốt Truffle đen, Dầu Truffle, Hạt điều & Mật ong caramel", "img": "pizza_taleggio_truffle", "badge": "Pizza Đắt Giá Nhất", "points": ["Nguyên liệu: Hội tụ nguyên liệu thượng hạng gồm phô mai Taleggio tan chảy, sốt nấm Truffle đen, dầu Truffle, hạt điều nghiền và mật ong thắng caramel."], "flavor": "Bản giao hưởng xa hoa: hương nấm Truffle đen sâu thẳm, vị béo ngậy đậm đà của Taleggio, quyện vị ngọt thơm mật ong caramel và độ giòn bùi của hạt điều."}, {"name": "4. Mushrooms & Truffle Oil Pizza", "sub": "225K | Nền Mozzarella, Nấm đùi gà, Dầu nấm Truffle & Tiêu đen", "img": "pizza_mushrooms_truffle", "badge": "Thơm Nức Truffle", "points": ["Nguyên liệu: Nền phô mai Mozzarella mịn màng phủ nấm đùi gà tươi, dầu nấm Truffle và tiêu đen xay."], "flavor": "Thơm lừng ngay từ khi bưng ra bàn nhờ hương Truffle nồng nàn, kết hợp độ giòn ngọt mọng nước của nấm đùi gà, nền Mozzarella béo mịn và chút cay ấm tiêu đen."}, {"name": "5. White Salami Pizza", "sub": "248K | Nền Mozzarella trắng & Xúc xích Salami Ý thái mỏng", "img": "pizza_white_salami", "badge": "Pizza Bianca", "points": ["Nét đặc trưng: Phiên bản không sốt cà chua của Salami Pizza; có thể gợi ý khách ghép Half-and-Half (2 hương vị trên 1 bánh, tính giá theo vị cao hơn)."], "flavor": "Không có vị chua của cà chua, tập trung 100% vào độ béo ngậy mịn màng của nền phô mai Mozzarella và vị mặn thơm nguyên bản của Salami."}, {"name": "6. Beef Steak & Mushrooms / 7. Mixed Veggies Pizza", "sub": "329K & 225K | Pizza Bò bít tết sốt tiêu & Pizza Rau củ nướng", "img": "pizza_beef_steak", "badge": "Đậm Đà vs Thanh Mát", "points": ["Beef Steak & Mushrooms (329K): Nền Mozzarella, thịt bò bít tết, nấm đùi gà, rau Rocket, Parmesan bào và sốt tiêu đen.", "Mixed Veggies Pizza (225K - Pizza Ortolana): Nền Mozzarella phủ cà tím nướng, bí ngòi (zucchini) và ớt chuông."], "flavor": "Beef Steak Pizza đậm đà vị thịt bò nướng quyện sốt tiêu cay thơm và rau Rocket the mát; Mixed Veggies ngọt thanh tự nhiên từ rau củ Địa Trung Hải nướng."}], "narration": "Học phần 5B: Bánh Pizza nhóm nền trắng phô mai không dùng sốt cà chua. Bốn Milks Honey và Walnuts kết hợp các tầng phô mai béo mặn với mật ong ngọt thanh và hạt óc chó. Mortadella và Pistachios là sự kết hợp thời thượng giữa chả lụa Bologna, hạt dẻ cười và giấm Balsamic. Cao cấp nhất là Taleggio, Truffle và Cashew với sốt nấm Truffle đen và mật ong caramel. Ngoài ra còn có Mushrooms Truffle Oil, White Salami, Beef Steak Mushrooms với bò bít tết sốt tiêu đen, và Mixed Veggies cho khách ăn chay.", "audio_key": "slide_15"}, {"id": 16, "section": "HỌC PHẦN 6A • MÓN KHAI VỊ (STARTERS)", "title": "12 Món Khai Vị Kiểu Ý (Antipasti – Trang 12–15)", "subtitle": "Nguồn gốc, nguyên liệu, kỹ thuật chế biến và nét đặc trưng từng món", "items": [{"name": "Khay Tổng Hợp: Antipasto Platter / Cheeses / Cold Cuts", "sub": "649K • 398K • 295K | Tinh hoa Thịt nguội & Phô mai Ý", "img": "antipasto_platter", "badge": "Mở Màn Tiệc Vang", "points": ["Ý nghĩa tên: 'Antipasto' nghĩa là 'Trước bữa ăn' – món mở màn truyền thống của người Ý.", "Italian Mixed Antipasto Platter (649K): Gồm cả 4 loại thịt nguội (Parma Ham, Mortadella, Salami, Coppa) + 4 loại phô mai (Buffalo Mozzarella, Taleggio, Parmesan, Gorgonzola) + nho tươi, hành tím caramel, ô liu ướp, bánh que Grissini & Focaccia.", "Assorted Cheeses Platter (398K) & Cold Cuts and Nduja Focaccia (295K): Khay riêng cho khách mê phô mai hoặc mê thịt nguội kèm xúc xích cay 'Nduja."]}, {"name": "Mussels in Pepper Sauce (Impepata di Cozze)", "sub": "289K | Vẹm nấu sốt tiêu đen & rượu vang miền Nam Ý", "img": "mussels_pepper", "badge": "Đặc Sản Naples", "points": ["Nguồn gốc: Món hải sản truyền thống lâu đời của vùng Naples ('Impepata' nghĩa là rắc thật nhiều tiêu).", "Cách chế biến: Vẹm tươi nấu nhanh trong nồi đậy kín cùng rượu vang thơm nồng và rất nhiều tiêu đen đập dập để vẹm bung vỏ, tiết nước ngọt tự nhiên."]}, {"name": "Taleggio in Carrozza", "sub": "239K | Phô mai Taleggio chiên xù kèm Parma Ham 24 tháng", "img": "taleggio_carrozza", "badge": "Giòn Rụm Tan Chảy", "points": ["Nguồn gốc: Biến tấu cao cấp từ món Mozzarella in Carrozza ('Phô mai ngồi trong cỗ xe ngựa').", "Chế biến & Đặc trưng: Phô mai Taleggio áo vụn bánh mì chiên giòn rụm bên ngoài, bên trong nóng chảy béo ngậy, ăn kèm Parma Ham 24 tháng và giấm Balsamic cô đặc."]}, {"name": "Arancini Nduja & Mozzarella", "sub": "179K | Cơm viên chiên giòn nhân 'Nduja cay & Mozzarella", "img": "arancini_nduja", "badge": "Sicily • Phổ biến TG", "points": ["Nguồn gốc: Món ăn đường phố biểu tượng đảo Sicily từ thế kỷ thứ 10; 'Arancini' nghĩa là 'những quả cam nhỏ' vì hình dáng vàng tròn sau khi chiên.", "Chế biến: Cơm Ý bọc nhân xúc xích cay 'Nduja và Mozzarella ở tâm, lăn bột chiên giòn, chấm chút Mayonnaise."], "flavor": "Vỏ cơm chiên giòn rụm bên ngoài, dẻo thơm bên trong, cắn tới tâm là phô mai Mozzarella kéo sợi béo ngậy hòa cùng vị cay nồng của 'Nduja."}, {"name": "Fried Calamari (179K) & Fried Prawns (189K) with Tartare", "sub": "Mực chiên giòn & Tôm chiên giòn sốt Tartare", "img": "fried_calamari", "badge": "Phổ biến TG", "points": ["Chế biến: Hải sản tươi tẩm lớp bột mỏng chiên vàng giòn kiểu Fritto Misto Địa Trung Hải, dùng kèm sốt Tartare (sốt mayonnaise trộn dưa chuột muối băm, nụ bạch hoa và chanh)."], "flavor": "Mực và tôm giòn tan bên ngoài, tươi ngọt bên trong, chấm sốt Tartare béo mịn, chua thanh dịu nhẹ giúp chống ngấy."}, {"name": "Classic Meatballs, Marinated Olives & 2 Món Fries", "sub": "159K – 198K | Thịt viên bà ngoại Ý, Ô liu ướp & Khoai tây chiên", "img": "classic_meatballs", "badge": "Khai Vị Đa Dạng", "points": ["Italian Classic Meatballs (198K): Viên thịt heo gia vị truyền thống của những người bà nước Ý, dùng kèm Parmesan, húng quế và bánh mì chua Sourdough.", "Marinated Olives with Crispy Focaccia (198K): Ô liu trộn ướp dầu EVO ăn kèm Focaccia nướng củi.", "Truffle & Cheddar Loaded Fries (179K) & Rosemary & Parmesan Fries (159K): Khoai tây chiên phủ thịt xông khói sốt Cheddar–Truffle, hoặc lắc Parmesan & lá hương thảo."]}], "narration": "Học phần 6A: Các món khai vị Starters. Khay tổng hợp Antipasto Platter, Cheeses Platter và Cold Cuts Focaccia quy tụ tinh hoa thịt nguội và phô mai Ý. Mussels in Pepper Sauce là vẹm nấu sốt tiêu đen và rượu vang kiểu miền Nam Ý. Taleggio in Carrozza là phô mai Taleggio tẩm bột chiên giòn ăn kèm Parma Ham. Arancini là cơm viên chiên giòn vùng Sicily nhồi nhân Nduja cay và Mozzarella kéo sợi. Cùng mực chiên giòn, tôm chiên giòn chấm sốt Tartare và khoai tây chiên sốt phô mai Truffle.", "audio_key": "slide_16"}, {"id": 17, "section": "HỌC PHẦN 6B • MÓN XÀ LÁCH (SALADS)", "title": "7 Món Salad Tươi Mát Chuẩn Vị Địa Trung Hải (Trang 18–20)", "subtitle": "Sự kết hợp tinh tế giữa phô mai tươi, dầu ô liu EVO, giấm Balsamic và rau xanh", "items": [{"name": "Classic Caprese Salad (Insalata Caprese)", "sub": "363K | 125g Phô mai sữa trâu Ý, Cà chua, Húng quế, Dầu EVO & Balsamic", "img": "caprese_salad", "badge": "Đảo Capri • Phổ biến TG", "points": ["Nguồn gốc: Ra đời tại đảo Capri (vịnh Naples) thập niên 1920, mang 3 màu cờ Ý.", "Nguyên liệu: Nguyên khối 125g Buffalo Mozzarella trên cà chua thái lát, húng quế tươi, dầu EVO và giấm Balsamic (có thể thêm Parma Ham 24 tháng +159K)."], "flavor": "Tươi mát thanh khiết: vị béo ngậy mọng sữa của phô mai sữa trâu quyện vị chua ngọt của cà chua chín, mùi thơm húng quế và giấm Balsamic."}, {"name": "Burrata Salad with Pesto Sauce", "sub": "339K | 125g Burrata Ý, Cà chua sô-cô-la, Rocket, Pesto & Focaccia", "img": "burrata_salad", "badge": "Best Seller Salad", "points": ["Nguyên liệu & Đặc trưng: Nguyên quả 125g Burrata đặt trên cà chua sô-cô-la (vỏ nâu đỏ, cùi dày ngọt đậm) và rau Rocket, kèm chén sốt Pesto thơm bùi và bánh Focaccia nướng củi."]}, {"name": "Parma Ham & Sweet Melon (Prosciutto e Melone)", "sub": "298K | Parma Ham 24 tháng, Dưa lưới ngọt, Grissini & Balsamic", "img": "parma_ham_melon", "badge": "Kinh Điển Mùa Hè Ý", "points": ["Nguồn gốc: Món ăn mùa hè kinh điển của người Ý có từ thời La Mã cổ đại (cân bằng thực phẩm tính hàn – ẩm như dưa lưới với thực phẩm tính nhiệt – mặn như thịt muối)."], "flavor": "Sự tương phản tuyệt diệu: vị mặn dịu, béo ngậy umami của đùi heo muối 24 tháng làm bật lên vị ngọt mát, mọng nước thơm lừng của dưa lưới."}, {"name": "Bacon Caesar Salad (224K) & Australian Beef Steak Salad (435K)", "sub": "Xà lách Romaine sốt kem Caesar cùng Bacon hoặc Bò Rib-eye Úc", "img": "bacon_caesar_salad", "badge": "Phổ biến TG", "points": ["Nguồn gốc: Sáng tạo năm 1924 bởi đầu bếp người Ý Caesar Cardini.", "Nguyên liệu: Xà lách Romaine giòn trộn thịt xông khói, bánh mì nướng croutons, trứng nghiền, Parmesan bào và sốt Caesar (bản Beef Steak đặt thêm bít tết bò Rib-eye Úc áp chảo lên trên)."], "flavor": "Rau Romaine giòn ngọt thấm đẫm sốt Caesar béo ngậy, mặn thơm vị Parmesan, điểm nhấn giòn rụm của croutons và bacon."}, {"name": "Chicken Salad in Spiced Yogurt (219K) & Italian Mixed Salad (138K)", "sub": "Salad gà Cajun sốt sữa chua & Salad trộn dầu giấm Ý", "img": "chicken_yogurt_salad", "badge": "Healthy & Thanh Đạm", "points": ["Chicken Salad in Spiced Yogurt (219K): Xà lách & rau Rocket phủ gà áp chảo tẩm gia vị Cajun cay thơm, khoai lang nướng, đậu gà (chickpeas), ớt chuông, dưa leo và sốt sữa chua.", "Italian Mixed Salad (138K): Xà lách trộn cà chua sô-cô-la và ô liu nhập khẩu trong dầu ô liu EVO và giấm Balsamic ủ lâu."]}], "narration": "Học phần 6B: Bảy món Salad tươi mát. Classic Caprese Salad đến từ đảo Capri gồm phô mai sữa trâu tươi, cà chua và húng quế. Burrata Salad đặt nguyên quả Burrata 125 gam trên cà chua sô cô la kèm sốt Pesto. Parma Ham và Sweet Melon là sự tương phản kinh điển giữa đùi heo muối 24 tháng mặn dịu và dưa lưới ngọt mát. Bacon Caesar Salad và Australian Beef Steak Salad dùng sốt kem Caesar đậm đà, cùng Salad gà Cajun sốt sữa chua và Salad trộn kiểu Ý.", "audio_key": "slide_17"}, {"id": 18, "section": "HỌC PHẦN 6C • BÁNH MÌ & GOURMET FOCACCIAS", "title": "Bánh Mì Ý & Bánh Focaccia Cao Cấp Nướng Củi (Trang 21–24)", "subtitle": "8 món bánh mì khai vị và Focaccia vùng Liguria nướng trong lò củi rực lửa", "items": [{"name": "Classic Italian Bruschetta", "sub": "99K | Bánh mì nướng xát tỏi, Cà chua chín, Húng quế & Dầu EVO", "img": "bruschetta", "badge": "Đọc là 'Brus-kết-ta'", "points": ["Nguồn gốc & Phát âm: Xuất xứ miền Trung nước Ý từ thế kỷ 15; âm 'ch' trong tiếng Ý đọc là 'k' ('Brus-kết-ta', từ chữ 'bruscare' nghĩa là nướng trên than hồng).", "Chế biến: Bánh mì nướng giòn xát tỏi tươi, phủ cà chua chín cắt hạt lựu ướp lá húng quế và dầu ô liu EVO."], "flavor": "Bánh mì giòn rụm thơm mùi tỏi và dầu ô liu, bên trên mát lạnh vị chua ngọt tươi mới của cà chua và húng quế."}, {"name": "Buttery Garlic Bread & Fried Pizza with Cheesy Sauce", "sub": "99K | Bánh mì bơ tỏi nướng giòn & Sợi bột Pizza chiên sốt phô mai cay", "img": "fried_pizza_strings", "badge": "Giòn Tan Hấp Dẫn", "points": ["Buttery Garlic Bread (99K - Phổ biến TG): Bánh mì phết đẫm bơ tỏi thơm ngát nướng giòn; vị béo ngậy của bơ quyện hương tỏi nướng.", "Fried Pizza with Cheesy Sauce (99K - Đặc sản đường phố Naples): Bột bánh pizza tươi cắt thành từng dải dài đem chiên phồng vàng ươm, chấm sốt phô mai cay."]}, {"name": "Artisanal Crunchy Focaccia & Rosemary EVO Oil Focaccia", "sub": "99K | Bánh mì dẹt truyền thống vùng Liguria nướng lò củi", "img": "focaccia_rosemary", "badge": "Vùng Liguria • Phổ biến TG", "points": ["Nguồn gốc & Cách làm: Đặc sản vùng Genoa (Liguria) từ chữ Latin 'panis focacius' (bánh nướng lò củi); bột nhào dầu ô liu, ấn tạo lúm nhỏ trên mặt và nướng lò củi giòn rụm."], "flavor": "Đế bánh giòn xốp, thơm nức mùi lá hương thảo tươi (rosemary), dầu ô liu nguyên chất và hương khói gỗ."}, {"name": "Pesto, Eggs and Arugula Gourmet Focaccia", "sub": "129K | Focaccia sốt Pesto húng quế, Trứng tươi & Rau Rocket", "img": "focaccia_pesto_egg", "badge": "Gourmet Focaccia", "points": ["Nét đặc trưng: Kết hợp lớp sốt Pesto húng quế đậm đà, trứng tươi béo bùi và rau Rocket (arugula) the cay nhẹ bên trên mặt bánh Focaccia giòn."]}, {"name": "Gorgonzola, Walnuts & Honey / Truffle & Mozzarella Focaccia", "sub": "129K & 119K | 2 phiên bản Gourmet Focaccia phô mai cao cấp", "img": "focaccia_gorgonzola", "badge": "Béo Ngậy Sang Trọng", "points": ["Gorgonzola, Walnuts and Honey (129K): Phô mai xanh Gorgonzola béo mặn quyện hạt óc chó giòn và mật ong ngọt thanh.", "Truffle and Mozzarella (119K): Hỗn hợp sốt nấm Truffle đen sang trọng kết hợp phô mai Mozzarella tan chảy."]}], "narration": "Học phần 6C: Bánh mì và Focaccia cao cấp nướng lò củi. Classic Italian Bruschetta đọc là Brus-kết-ta, gồm bánh mì nướng xát tỏi phủ cà chua tươi và dầu ô liu. Buttery Garlic Bread thơm nức bơ tỏi. Fried Pizza with Cheesy Sauce là sợi bột pizza chiên phồng chấm sốt phô mai cay. Đặc biệt là dòng bánh mì dẹt Focaccia vùng Liguria với 4 hương vị cao cấp: lá hương thảo dầu ô liu, sốt Pesto trứng và rau Rocket, phô mai xanh Gorgonzola mật ong óc chó, và nấm Truffle phô mai Mozzarella.", "audio_key": "slide_18"}, {"id": 19, "section": "HỌC PHẦN 6D • COMFORT FOODS & MÓN CHÍNH", "title": "Món Ăn Thân Thuộc, Món Chính Âu & Góc Việt Nam (Trang 43–50)", "subtitle": "Lasagna đút lò, Sườn heo Milanese, Bò Rib-eye Tagliata, Cá hồi đút lò & Bò Né", "items": [{"name": "Classic Bolognese Lasagna", "sub": "298K | Mì lá xếp lớp nướng sốt thịt Bolognese, Béchamel & Parmesan", "img": "bolognese_lasagna", "badge": "Bologna • Phổ biến TG", "points": ["Nguồn gốc: Niềm tự hào của vùng Emilia-Romagna (Bắc Ý).", "Cấu trúc & Chế biến: Xếp chồng nhiều lớp lá mì tươi xen kẽ sốt thịt hầm Bolognese, sốt kem trắng Béchamel (nấu từ bơ, bột mì, sữa tươi) và Parmesan, đút lò xém vàng (có thể thêm 1/3 quả Burrata +76K)."], "flavor": "Mềm mượt, béo ngậy và ấm áp: vị đậm đà chua ngọt của sốt thịt Bolognese hòa quyện độ béo kem của sốt Béchamel và lớp phô mai nướng thơm lừng."}, {"name": "Pork Chop alla Milanese (Cotoletta alla Milanese)", "sub": "459K | Sườn cốt-lết heo tẩm bột chiên giòn, Salad Rocket & Sốt chanh mật ong", "img": "pork_chop_milanese", "badge": "Milan 1134 • Phổ biến TG", "points": ["Nguồn gốc: Món chính biểu tượng của thành Milan (Lombardy) từ năm 1134.", "Chế biến: Nguyên miếng sườn heo có xương đập mềm, áo bột chiên xù vàng giòn, ăn kèm salad rau Rocket và sốt chanh mật ong."], "flavor": "Lớp vỏ bột vàng giòn tan khóa chặt phần thịt sườn bên trong mềm mọng nước, quyện vị chua thanh – ngọt dịu của sốt chanh mật ong và rau Rocket the mát."}, {"name": "Beef Tagliata 300gr (689K) & Beef Flank Steak 250gr (298K)", "sub": "2 tuyệt phẩm Bít tết bò nướng kèm khoai tây & salad", "img": "beef_tagliata", "badge": "Steak Thượng Hạng", "points": ["Beef Tagliata 300gr (689K - Đặc sản Tuscany): 'Tagliata' nghĩa là 'cắt lát'; bò Rib-eye Úc nhiều vân mỡ nướng lửa lớn rồi thái lát dày, dùng kèm salad Rocket, khoai tây múi cau và sốt nấm đậm đà.", "Beef Flank Steak 250gr (298K): Phần thớ thịt bò săn chắc, cực kỳ đậm vị bò (beefy flavor), nướng chuẩn độ chín, ăn kèm khoai tây chiên vàng giòn và salad xanh."]}, {"name": "Passion Fruit Salmon (527K) & Golden Pumpkin Soup (129K)", "sub": "Cá hồi đút lò sốt chanh dây & Súp bí đỏ nướng kem tươi", "img": "passion_fruit_salmon", "badge": "Tinh Tế & Bổ Dưỡng", "points": ["Passion Fruit Salmon (527K): Phi lê cá hồi đút lò da giòn thịt mềm ẩm, phục vụ cùng măng tây xanh (asparagus), khoai tây nướng và sốt chanh dây chua thanh cắt béo.", "Golden Pumpkin Soup (129K): Bí đỏ nướng lò cô đặc vị ngọt đem xay mịn cùng kem tươi, trang trí lá húng quế và ăn kèm bánh Focaccia giòn."]}, {"name": "Grilled Prawns (319K), Grilled Sausages (198K) & Bò Né Nướng (139K)", "sub": "Tôm nướng sốt tỏi, Xúc xích heo nướng & Bò Né chảo gang", "img": "grilled_pork_sausages", "badge": "Nướng Lửa Hồng", "points": ["Grilled Prawns in Garlic Sauce (319K): Tôm tươi nướng mềm phủ sốt bơ tỏi đậm đà và chanh tươi.", "Grilled Pork Sausages (198K): Xúc xích heo tươi kiểu Ý nướng xém vỏ mọng nước, kèm khoai tây múi cau, bánh que Grissini, hương thảo và sốt mù tạt (mustard).", "Bò Né Nướng (139K - Góc Việt Nam): Bò thái lát mềm mọng trên chảo gang nóng xèo xèo cùng trứng ốp la, pate gan và bánh mì giòn."]}], "narration": "Học phần 6D: Món ăn thân thuộc và Món chính. Classic Bolognese Lasagna xếp nhiều lớp mì nướng cùng sốt thịt Bolognese, sốt kem trắng Bechamel và Parmesan. Golden Pumpkin Soup là súp bí đỏ nướng xay mịn. Về món chính: Pork Chop alla Milanese là sườn heo có xương tẩm bột chiên giòn biểu tượng thành Milan. Beef Tagliata là bò Rib-eye Úc 300 gam nướng cắt lát kèm sốt nấm. Cùng Beef Flank Steak 250 gam, cá hồi đút lò sốt chanh dây, tôm nướng sốt tỏi, xúc xích heo nướng và Bò Né Nướng.", "audio_key": "slide_19"}, {"id": 20, "section": "HỌC PHẦN 6E • TRÁNG MIỆNG & BÍ QUYẾT PAIR RƯỢU", "title": "4 Món Tráng Miệng (Desserts) & Quy Tắc Tư Vấn Thực Chiến", "subtitle": "Kết thúc ngọt ngào chuẩn Ý (Trang 52) và cẩm nang Upselling cho nhân viên", "items": [{"name": "Italian Moka Tiramisù", "sub": "139K | Kem phô mai Mascarpone, Bánh Ladyfingers ngâm Espresso & Sô-cô-la bào", "img": "tiramisu", "badge": "Số 1 Nước Ý • Phổ biến TG", "points": ["Nguồn gốc & Ý nghĩa tên: Ra đời tại Treviso (Veneto); 'Tiramisù' nghĩa là 'Hãy vực tôi dậy / Làm tôi tỉnh táo và hạnh phúc lên'.", "Cách làm: Xếp lớp bánh quy xốp Savoiardi (Ladyfingers) nhúng cà phê Espresso pha bằng ấm Moka truyền thống, xen kẽ kem phô mai tươi Mascarpone và phủ sô-cô-la bào."], "flavor": "Mềm tan như mây trong miệng: vị béo ngậy mượt mà của Mascarpone hòa quyện vị đắng thơm nồng nàn của Espresso và hậu vị ngọt đắng quyến rũ của sô-cô-la."}, {"name": "Basil Panna Cotta & Strawberry Jam", "sub": "139K | Pudding kem tươi ủ hương lá húng quế & Mứt dâu tây", "img": "basil_panna_cotta", "badge": "Piedmont • Phổ biến TG", "points": ["Nguồn gốc & Cách làm: Xuất xứ vùng Piedmont (Bắc Ý), 'Panna Cotta' nghĩa là 'Kem nấu chín'; kem tươi đun ấm ủ lấy tinh dầu lá húng quế tươi, làm đông nhẹ bằng gelatin và phủ mứt dâu."], "flavor": "Mềm mịn núng nính tan ngay đầu lưỡi, béo ngọt kem sữa thoảng hương thảo mộc the mát độc đáo của húng quế, cân bằng hoàn hảo với vị chua ngọt của mứt dâu."}, {"name": "Chocolate Tart with Pistachio (129K) & Artisanal Apple Pie (119K)", "sub": "Bánh Tart sô-cô-la hạt dẻ cười & Bánh táo nướng bơ quế", "img": "chocolate_tart", "badge": "Bánh Ngọt Thủ Công", "points": ["Chocolate Tart with Pistachio (129K): Đế bánh quy bơ giòn đổ đầy nhân ganache sô-cô-la mịn mượt, rắc hạt dẻ cười băm nhỏ bùi giòn.", "Artisanal Apple Pie (119K - Phổ biến TG): Vỏ bánh ngàn lớp bơ giòn xốp (flaky crust) ôm nhân táo thái lát ướp đường nâu caramel và bột quế."], "flavor": "Chocolate Tart đậm đặc sô-cô-la quyện hạt dẻ cười béo bùi; Apple Pie ấm áp hương bơ nướng, táo chua ngọt dịu và mùi quế nồng ấm."}, {"name": "Bí Quyết Vàng Tư Vấn Ghép Rượu & Món (Upselling tại bàn)", "sub": "4 công thức gợi ý nhanh giúp bạn ghi điểm tuyệt đối với thực khách", "img": "wines_banner", "badge": "Mẹo Thực Chiến", "points": ["1. Khách mới ngồi vào bàn: Gợi ý mở màn bằng Aperol Spritz, Cuvée Golden Heart (Glera/Prosecco) hoặc Franciacorta kèm khay Antipasto Platter.", "2. Khách gọi Pizza/Mì sốt đỏ (Margherita, Salami, Prosciutto Crudo, Ragù, Lasagna): Ghép với vang đỏ Chianti DOCG (độ chua cắt béo) hoặc Nero d'Avola Sicilia.", "3. Khách gọi Bít tết (Beef Tagliata, Flank Steak) hoặc Sốt/Pizza nấm Truffle: Ghép với vang đỏ Shiraz Úc, Brunello di Montalcino hoặc Amarone Classico.", "4. Khách gọi Hải sản (Vongole, Grand Seafood, Mussels, Cá hồi) hoặc Salad: Ghép với vang trắng Sauvignon Blanc, Pinot Grigio, Soave Classico hoặc vang hồng Figaro Rosé."]}], "narration": "Học phần cuối: Tráng miệng và Bí quyết tư vấn kết hợp rượu vang. Italian Moka Tiramisu xếp lớp bánh quy nhúng cà phê Espresso và kem phô mai Mascarpone mềm tan. Basil Panna Cotta là kem nấu chín ủ hương lá húng quế kèm mứt dâu. Cùng bánh Chocolate Tart hạt dẻ cười và Apple Pie táo nướng hương quế. Khi tư vấn khách: món sốt cà chua hợp với Chianti hoặc Nero d Avola; bít tết và sốt Truffle hợp với Shiraz, Amarone hoặc Brunello; còn hải sản và salad hợp với Sauvignon Blanc hoặc Pinot Grigio. Chúc bạn thành công!", "audio_key": "slide_20"}];
+    const IMAGES = {"black_milk_tea": "images/black_milk_tea.png", "caramel_hazelnut_milk_tea": "images/caramel_hazelnut_milk_tea.png", "green_milk_tea": "images/green_milk_tea.png", "fresh_lemon_tea": "images/fresh_lemon_tea.png", "mussels_pepper": "images/mussels_pepper.png", "cheeses_platter": "images/cheeses_platter.png", "cold_cuts_focaccia": "images/cold_cuts_focaccia.png", "antipasto_platter": "images/antipasto_platter.png", "taleggio_carrozza": "images/taleggio_carrozza.png", "classic_meatballs": "images/classic_meatballs.png", "truffle_fries": "images/truffle_fries.png", "marinated_olives": "images/marinated_olives.png", "arancini_nduja": "images/arancini_nduja.png", "fried_calamari": "images/fried_calamari.png", "fried_prawns": "images/fried_prawns.png", "rosemary_fries": "images/rosemary_fries.png", "burrata_salad": "images/burrata_salad.png", "caprese_salad": "images/caprese_salad.png", "bacon_caesar_salad": "images/bacon_caesar_salad.png", "chicken_yogurt_salad": "images/chicken_yogurt_salad.png", "italian_mixed_salad": "images/italian_mixed_salad.png", "beef_steak_salad": "images/beef_steak_salad.png", "parma_ham_melon": "images/parma_ham_melon.png", "garlic_bread": "images/garlic_bread.png", "bruschetta": "images/bruschetta.png", "crunchy_focaccia": "images/crunchy_focaccia.png", "fried_pizza_strings": "images/fried_pizza_strings.png", "focaccia_rosemary": "images/focaccia_rosemary.png", "focaccia_pesto_egg": "images/focaccia_pesto_egg.png", "focaccia_gorgonzola": "images/focaccia_gorgonzola.png", "focaccia_truffle": "images/focaccia_truffle.png", "pizza_margherita": "images/pizza_margherita.png", "pizza_salami": "images/pizza_salami.png", "pizza_4_milks": "images/pizza_4_milks.png", "pizza_white_salami": "images/pizza_white_salami.png", "pizza_seafood": "images/pizza_seafood.png", "pizza_mushrooms_truffle": "images/pizza_mushrooms_truffle.png", "pizza_mortadella": "images/pizza_mortadella.png", "pizza_prosciutto_crudo": "images/pizza_prosciutto_crudo.png", "pizza_mixed_veggies": "images/pizza_mixed_veggies.png", "pizza_capo_nduja": "images/pizza_capo_nduja.png", "pizza_taleggio_truffle": "images/pizza_taleggio_truffle.png", "pizza_ham_mushrooms": "images/pizza_ham_mushrooms.png", "pizza_beef_steak": "images/pizza_beef_steak.png", "pasta_penne": "images/pasta_penne.png", "pasta_rigatoni": "images/pasta_rigatoni.png", "pasta_spinach_linguine": "images/pasta_spinach_linguine.png", "pasta_spaghetti": "images/pasta_spaghetti.png", "pasta_cappelletti": "images/pasta_cappelletti.png", "pasta_pici": "images/pasta_pici.png", "pasta_black_ink": "images/pasta_black_ink.png", "pasta_gnocchi": "images/pasta_gnocchi.png", "sauce_ragu": "images/sauce_ragu.png", "sauce_vongole": "images/sauce_vongole.png", "sauce_creamy_carbonara": "images/sauce_creamy_carbonara.png", "sauce_creamy_mushrooms": "images/sauce_creamy_mushrooms.png", "sauce_arrabbiata": "images/sauce_arrabbiata.png", "sauce_gorgonzola_balsamic": "images/sauce_gorgonzola_balsamic.png", "sauce_walnut_pesto": "images/sauce_walnut_pesto.png", "sauce_spicy_tuna": "images/sauce_spicy_tuna.png", "sauce_burrata_tomato": "images/sauce_burrata_tomato.png", "sauce_taleggio_truffle": "images/sauce_taleggio_truffle.png", "sauce_grand_seafood": "images/sauce_grand_seafood.png", "sauce_crab_meat": "images/sauce_crab_meat.png", "sauce_meatballs": "images/sauce_meatballs.png", "sauce_original_carbonara": "images/sauce_original_carbonara.png", "special_black_ink_prawns": "images/special_black_ink_prawns.png", "bolognese_lasagna": "images/bolognese_lasagna.png", "pumpkin_soup": "images/pumpkin_soup.png", "pork_chop_milanese": "images/pork_chop_milanese.png", "beef_tagliata": "images/beef_tagliata.png", "passion_fruit_salmon": "images/passion_fruit_salmon.png", "beef_flank_steak": "images/beef_flank_steak.png", "grilled_prawns_garlic": "images/grilled_prawns_garlic.png", "grilled_pork_sausages": "images/grilled_pork_sausages.png", "bo_ne_nuong": "images/bo_ne_nuong.png", "tiramisu": "images/tiramisu.png", "chocolate_tart": "images/chocolate_tart.png", "basil_panna_cotta": "images/basil_panna_cotta.png", "apple_pie": "images/apple_pie.png", "cocktails_banner": "images/cocktails_banner.jpg", "wines_banner": "images/wines_banner.jpg", "drinks_coffee_page": "images/drinks_coffee_page.jpg", "red_white_wines_page": "images/red_white_wines_page.jpg", "ing_parmesan": "images/ing_parmesan.png", "ing_buffalo_mozzarella": "images/ing_buffalo_mozzarella.png", "ing_gorgonzola": "images/ing_gorgonzola.png", "ing_taleggio": "images/ing_taleggio.png", "ing_coppa": "images/ing_coppa.png", "ing_mortadella": "images/ing_mortadella.png", "ing_salami": "images/ing_salami.png", "ing_nduja": "images/ing_nduja.jpg", "ing_guanciale": "images/ing_guanciale.jpg", "ing_pecorino": "images/ing_pecorino.jpg", "ing_mascarpone": "images/ing_mascarpone.jpg", "ing_truffle": "images/ing_truffle.jpg", "ing_balsamic": "images/ing_balsamic.jpg", "ing_evo_oil": "images/ing_evo_oil.jpg", "ing_parma_ham": "images/ing_parma_ham.jpg", "spirit_aperol": "images/spirit_aperol.jpg", "spirit_vermouth": "images/spirit_vermouth.jpg", "spirit_gin": "images/spirit_gin.jpg", "spirit_vodka": "images/spirit_vodka.jpg", "spirit_whiskey": "images/spirit_whiskey.jpg", "spirit_rum": "images/spirit_rum.jpg", "drink_aperol_spritz": "images/drink_aperol_spritz.jpg", "drink_negroni": "images/drink_negroni.jpg", "drink_americano": "images/drink_americano.jpg", "drink_sangria": "images/drink_sangria.jpg", "drink_mojito": "images/drink_mojito.jpg", "drink_cuba_libre": "images/drink_cuba_libre.jpg", "drink_gin_tonic": "images/drink_gin_tonic.jpg", "drink_espresso": "images/drink_espresso.jpg", "drink_cappuccino": "images/drink_cappuccino.jpg", "wine_amarone": "images/wine_amarone.jpg", "wine_brunello": "images/wine_brunello.jpg", "wine_chianti": "images/wine_chianti.jpg", "wine_prosecco": "images/wine_prosecco.jpg", "wine_rose": "images/wine_rose.jpg", "wine_merlot": "images/wine_merlot.jpg", "wine_cabernet": "images/wine_cabernet.jpg", "wine_shiraz": "images/wine_shiraz.jpg", "wine_pinot_noir": "images/wine_pinot_noir.jpg", "wine_sauvignon_blanc": "images/wine_sauvignon_blanc.jpg", "wine_gewurztraminer": "images/wine_gewurztraminer.jpg", "wine_soave": "images/wine_soave.jpg", "wine_pinot_grigio": "images/wine_pinot_grigio.jpg", "spirit_campari": "images/spirit_campari.jpg", "wine_franciacorta": "images/wine_franciacorta.jpg", "drink_san_pellegrino": "images/drink_san_pellegrino.jpg", "drink_hoegaarden": "images/drink_hoegaarden.jpg", "wine_nero_davola": "images/wine_nero_davola.jpg", "wine_chardonnay": "images/wine_chardonnay.jpg"};
+    const AUDIO_B64 = {"slide_01": "audio/slide_01.mp3", "slide_02": "audio/slide_02.mp3", "slide_03": "audio/slide_03.mp3", "slide_04": "audio/slide_04.mp3", "slide_05": "audio/slide_05.mp3", "slide_06": "audio/slide_06.mp3", "slide_07": "audio/slide_07.mp3", "slide_08": "audio/slide_08.mp3", "slide_09": "audio/slide_09.mp3", "slide_10": "audio/slide_10.mp3", "slide_11": "audio/slide_11.mp3", "slide_12": "audio/slide_12.mp3", "slide_13": "audio/slide_13.mp3", "slide_14": "audio/slide_14.mp3", "slide_15": "audio/slide_15.mp3", "slide_16": "audio/slide_16.mp3", "slide_17": "audio/slide_17.mp3", "slide_18": "audio/slide_18.mp3", "slide_19": "audio/slide_19.mp3", "slide_20": "audio/slide_20.mp3"};
+
+    let currentSlideIdx = 0;
+    let isPlayingLecture = false;
+    let autoAdvance = true;
+    let playbackSpeed = 1.0;
+    let activeCardBtn = null;
+
+    const slideAudio = document.getElementById('slideAudio');
+    const cardAudio = document.getElementById('cardAudio');
+
+    function formatTime(sec) {
+      if (!sec || isNaN(sec)) return '00:00';
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    }
+
+    function getImgSrc(key) {
+      if (!key) return '';
+      return IMAGES[key] || '';
+    }
+
+    function renderSlide(idx, autoPlayAfterRender = false) {
+      stopCardSpeech();
+      currentSlideIdx = Math.max(0, Math.min(SLIDES.length - 1, idx));
+      const slide = SLIDES[currentSlideIdx];
+
+      document.getElementById('slideCounterPill').textContent = `Slide ${currentSlideIdx + 1} / ${SLIDES.length}`;
+      document.getElementById('topProgressBar').style.width = `${((currentSlideIdx + 1) / SLIDES.length) * 100}%`;
+      document.getElementById('subtitleText').textContent = `🎙️ Thuyết minh Slide ${currentSlideIdx + 1}: ${slide.narration}`;
+
+      const bannerImgSrc = getImgSrc(slide.banner_img || (slide.items[0] && slide.items[0].img));
+      const bannerHtml = bannerImgSrc
+        ? `<img src="${bannerImgSrc}" class="hero-banner-img" alt="${slide.title}" onclick="openLightbox('${slide.banner_img || slide.items[0].img}', '${slide.title.replace(/'/g, "\'")}')" />`
+        : '';
+
+      let cardsHtml = '';
+      slide.items.forEach((item, i) => {
+        const imgSrc = getImgSrc(item.img);
+        const imgBlock = imgSrc
+          ? `<div class="card-img-wrap" onclick="openLightbox('${item.img}', '${item.name.replace(/'/g, "\'")}')" title="Bấm để phóng to hình">
+               <img src="${imgSrc}" alt="${item.name}" loading="lazy" />
+             </div>`
+          : '';
+
+        const pointsHtml = (item.points || []).map(p => `<li>${p}</li>`).join('');
+        const flavorHtml = item.flavor
+          ? `<div class="flavor-box"><span class="flavor-label">✨ Hương vị & Cách thưởng thức:</span>${item.flavor}</div>`
+          : '';
+
+        cardsHtml += `
+          <article class="item-card" id="slide-card-${i}">
+            <div class="card-top">
+              ${imgBlock}
+              <div class="card-head-info">
+                <div class="card-badge-row">
+                  <span class="card-badge">${item.badge || 'Đặc trưng'}</span>
+                  <button class="btn-speak-card" id="btn-card-${i}" onclick="speakSingleCard(${i})">🔊 Nghe món này</button>
+                </div>
+                <h2 class="card-title">${item.name}</h2>
+                <div class="card-sub">${item.sub || ''}</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="points-list">${pointsHtml}</ul>
+              ${flavorHtml}
+            </div>
+          </article>
+        `;
+      });
+
+      const stage = document.getElementById('mainStage');
+      stage.innerHTML = `
+        <section class="slide-hero">
+          <div class="hero-text">
+            <span class="section-tag">${slide.section}</span>
+            <h1 class="slide-title">${slide.title}</h1>
+            <p class="slide-subtitle">${slide.subtitle}</p>
+          </div>
+          ${bannerHtml}
+        </section>
+        <div class="cards-grid">
+          ${cardsHtml}
+        </div>
+      `;
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Load Slide Audio
+      const audioSrc = AUDIO_B64[slide.audio_key] || `audio/${slide.audio_key}.mp3`;
+      slideAudio.src = audioSrc;
+      slideAudio.playbackRate = playbackSpeed;
+      document.getElementById('audioScrubber').value = 0;
+      document.getElementById('curTimeTxt').textContent = '00:00';
+      document.getElementById('durTimeTxt').textContent = '00:30';
+
+      if (autoPlayAfterRender || isPlayingLecture) {
+        playSlideAudio();
+      } else {
+        updatePlayUI(false);
+      }
+    }
+
+    function playSlideAudio() {
+      stopCardSpeech();
+      isPlayingLecture = true;
+      slideAudio.playbackRate = playbackSpeed;
+      slideAudio.play().then(() => {
+        updatePlayUI(true);
+      }).catch(err => {
+        console.warn('Audio play fallback to Web Speech API:', err);
+        speakWithBrowserTTS(SLIDES[currentSlideIdx].narration, () => {
+          if (isPlayingLecture && autoAdvance && currentSlideIdx < SLIDES.length - 1) {
+            renderSlide(currentSlideIdx + 1, true);
+          } else {
+            updatePlayUI(false);
+          }
+        });
+      });
+    }
+
+    function pauseSlideAudio() {
+      isPlayingLecture = false;
+      slideAudio.pause();
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      updatePlayUI(false);
+      clearCardHighlights();
+    }
+
+    function togglePlayLecture() {
+      if (isPlayingLecture) {
+        pauseSlideAudio();
+      } else {
+        playSlideAudio();
+      }
+    }
+
+    function updatePlayUI(playing) {
+      const btn = document.getElementById('btnPlayMain');
+      const wave = document.getElementById('waveIndicator');
+      if (playing) {
+        btn.innerHTML = '⏸ <span>Tạm Dừng</span>';
+        wave.classList.add('playing');
+      } else {
+        btn.innerHTML = '▶ <span>Phát Bài Giảng</span>';
+        wave.classList.remove('playing');
+      }
+    }
+
+    function clearCardHighlights() {
+      document.querySelectorAll('.item-card.active-reading').forEach(el => el.classList.remove('active-reading'));
+    }
+
+    slideAudio.addEventListener('loadedmetadata', () => {
+      document.getElementById('durTimeTxt').textContent = formatTime(slideAudio.duration);
+    });
+
+    slideAudio.addEventListener('timeupdate', () => {
+      if (!slideAudio.duration) return;
+      const pct = (slideAudio.currentTime / slideAudio.duration) * 100;
+      document.getElementById('audioScrubber').value = pct;
+      document.getElementById('curTimeTxt').textContent = formatTime(slideAudio.currentTime);
+      document.getElementById('durTimeTxt').textContent = formatTime(slideAudio.duration);
+
+      // Highlight card proportionally to audio progress
+      const items = SLIDES[currentSlideIdx].items || [];
+      if (items.length > 0 && isPlayingLecture) {
+        const activeIdx = Math.min(items.length - 1, Math.floor((slideAudio.currentTime / slideAudio.duration) * items.length));
+        clearCardHighlights();
+        const cardEl = document.getElementById(`slide-card-${activeIdx}`);
+        if (cardEl) cardEl.classList.add('active-reading');
+      }
+    });
+
+    slideAudio.addEventListener('ended', () => {
+      clearCardHighlights();
+      if (isPlayingLecture && autoAdvance && currentSlideIdx < SLIDES.length - 1) {
+        setTimeout(() => {
+          if (isPlayingLecture) renderSlide(currentSlideIdx + 1, true);
+        }, 600);
+      } else {
+        isPlayingLecture = false;
+        updatePlayUI(false);
+      }
+    });
+
+    function seekAudio(pct) {
+      if (slideAudio.duration) {
+        slideAudio.currentTime = (pct / 100) * slideAudio.duration;
+      }
+    }
+
+    function changeSpeed(val) {
+      playbackSpeed = parseFloat(val) || 1.0;
+      slideAudio.playbackRate = playbackSpeed;
+      cardAudio.playbackRate = playbackSpeed;
+    }
+
+    function toggleAutoAdvance() {
+      autoAdvance = !autoAdvance;
+      document.getElementById('autoNextTxt').textContent = `Tự chuyển: ${autoAdvance ? 'BẬT' : 'TẮT'}`;
+    }
+
+    function toggleSubtitleBar() {
+      document.getElementById('subtitleBar').classList.toggle('hidden');
+    }
+
+    function prevSlide() {
+      if (currentSlideIdx > 0) renderSlide(currentSlideIdx - 1, isPlayingLecture);
+    }
+
+    function nextSlide() {
+      if (currentSlideIdx < SLIDES.length - 1) renderSlide(currentSlideIdx + 1, isPlayingLecture);
+    }
+
+    /* Single Card Speech (On-Demand Detail Reader) */
+    function stopCardSpeech() {
+      cardAudio.pause();
+      cardAudio.src = '';
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      if (activeCardBtn) {
+        activeCardBtn.classList.remove('speaking');
+        activeCardBtn.innerHTML = '🔊 Nghe món này';
+        activeCardBtn = null;
+      }
+    }
+
+    function speakSingleCard(itemIdx) {
+      const btn = document.getElementById(`btn-card-${itemIdx}`);
+      if (activeCardBtn === btn) {
+        stopCardSpeech();
+        return;
+      }
+      pauseSlideAudio();
+      stopCardSpeech();
+
+      const item = SLIDES[currentSlideIdx].items[itemIdx];
+      if (!item) return;
+
+      clearCardHighlights();
+      const cardEl = document.getElementById(`slide-card-${itemIdx}`);
+      if (cardEl) cardEl.classList.add('active-reading');
+
+      activeCardBtn = btn;
+      btn.classList.add('speaking');
+      btn.innerHTML = '⏹ Đang đọc...';
+
+      const fullText = `${item.name}. ${(item.points || []).join(' ')} ${item.flavor ? 'Hương vị: ' + item.flavor : ''}`;
+      document.getElementById('subtitleText').textContent = `🔊 Đang đọc chi tiết: ${fullText}`;
+
+      // Split into chunks <= 165 chars and play smoothly via Google TTS stream or Web Speech API fallback
+      const rawText = `${item.name}. ${(item.points || []).join(' ')} ${item.flavor ? 'Hương vị: ' + item.flavor : ''}`;
+      playChunkedOnlineOrFallbackTTS(rawText, () => {
+        stopCardSpeech();
+        clearCardHighlights();
+      });
+    }
+
+    function playChunkedOnlineOrFallbackTTS(text, onDone) {
+      const parts = text.match(/[^.,;:]+[.,;:]?/g) || [text];
+      const chunks = [];
+      let cur = '';
+      for (const p of parts) {
+        if ((cur + ' ' + p).trim().length <= 165) {
+          cur = (cur + ' ' + p).trim();
+        } else {
+          if (cur) chunks.push(cur);
+          cur = p.trim();
+        }
+      }
+      if (cur) chunks.push(cur);
+
+      let cIdx = 0;
+      function playNextChunk() {
+        if (!activeCardBtn || cIdx >= chunks.length) {
+          if (onDone) onDone();
+          return;
+        }
+        const q = encodeURIComponent(chunks[cIdx++]);
+        cardAudio.src = `https://translate.google.com/translate_tts?ie=UTF-8&tl=vi&client=tw-ob&q=${q}`;
+        cardAudio.playbackRate = playbackSpeed;
+        cardAudio.onended = playNextChunk;
+        cardAudio.onerror = () => {
+          speakWithBrowserTTS(text, onDone);
+        };
+        cardAudio.play().catch(() => {
+          speakWithBrowserTTS(text, onDone);
+        });
+      }
+      playNextChunk();
+    }
+
+    function speakWithBrowserTTS(text, onDone) {
+      if (!('speechSynthesis' in window)) {
+        if (onDone) onDone();
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'vi-VN';
+      u.rate = playbackSpeed;
+      const voices = window.speechSynthesis.getVoices();
+      const viVoice = voices.find(v => v.lang && v.lang.toLowerCase().includes('vi'));
+      if (viVoice) u.voice = viVoice;
+      u.onend = () => { if (onDone) onDone(); };
+      u.onerror = () => { if (onDone) onDone(); };
+      window.speechSynthesis.speak(u);
+    }
+
+    /* TOC & Search Modals */
+    function openTocModal() {
+      const list = document.getElementById('tocList');
+      list.innerHTML = SLIDES.map((s, i) => `
+        <div class="toc-item ${i === currentSlideIdx ? 'current' : ''}" onclick="closeTocModal(); renderSlide(${i}, isPlayingLecture);">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div class="toc-num">${i + 1}</div>
+            <div>
+              <div style="font-size:11.5px; color:var(--gold); font-weight:700;">${s.section}</div>
+              <div style="font-size:15px; font-weight:700; color:#fff;">${s.title}</div>
+              <div style="font-size:12.5px; color:var(--text-muted);">${s.items.length} mục chi tiết</div>
+            </div>
+          </div>
+          <span style="color:var(--gold-light); font-size:18px;">➔</span>
+        </div>
+      `).join('');
+      document.getElementById('tocModal').classList.add('open');
+    }
+
+    function closeTocModal() {
+      document.getElementById('tocModal').classList.remove('open');
+    }
+
+    function openSearchModal() {
+      document.getElementById('searchModal').classList.add('open');
+      const inp = document.getElementById('searchInput');
+      inp.value = '';
+      runSearch('');
+      setTimeout(() => inp.focus(), 100);
+    }
+
+    function closeSearchModal() {
+      document.getElementById('searchModal').classList.remove('open');
+    }
+
+    function runSearch(query) {
+      const q = query.trim().toLowerCase();
+      const resEl = document.getElementById('searchResults');
+      const matches = [];
+      SLIDES.forEach((s, sIdx) => {
+        s.items.forEach((item, iIdx) => {
+          const hay = `${item.name} ${item.sub || ''} ${(item.points || []).join(' ')} ${item.flavor || ''}`.toLowerCase();
+          if (!q || hay.includes(q)) {
+            matches.push({ sIdx, iIdx, slideTitle: s.title, item });
+          }
+        });
+      });
+
+      resEl.innerHTML = matches.slice(0, 35).map(m => `
+        <div class="toc-item" onclick="closeSearchModal(); renderSlide(${m.sIdx}, false); setTimeout(() => { const el = document.getElementById('slide-card-${m.iIdx}'); if(el){ el.scrollIntoView({behavior:'smooth', block:'center'}); el.classList.add('active-reading'); } }, 250);">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div class="toc-num">S${m.sIdx + 1}</div>
+            <div>
+              <div style="font-size:15px; font-weight:700; color:#fff;">${m.item.name}</div>
+              <div style="font-size:12.5px; color:var(--gold-light);">${m.item.sub || m.slideTitle}</div>
+            </div>
+          </div>
+          <span style="color:var(--gold-light); font-size:14px;">Xem ➔</span>
+        </div>
+      `).join('') || '<div style="padding:20px; text-align:center; color:var(--text-muted);">Không tìm thấy kết quả phù hợp.</div>';
+    }
+
+    /* Image Lightbox */
+    function openLightbox(imgKey, caption) {
+      const src = getImgSrc(imgKey);
+      if (!src) return;
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxCaption').textContent = caption;
+      document.getElementById('lightboxModal').classList.add('open');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxModal').classList.remove('open');
+    }
+
+    /* Keyboard & Mobile Touch Swipe Navigation */
+    window.addEventListener('keydown', e => {
+      if (document.querySelector('.modal-backdrop.open')) {
+        if (e.key === 'Escape') {
+          closeTocModal(); closeSearchModal(); closeLightbox();
+        }
+        return;
+      }
+      if (e.key === 'ArrowRight') nextSlide();
+      else if (e.key === 'ArrowLeft') prevSlide();
+      else if (e.key === ' ') {
+        e.preventDefault();
+        togglePlayLecture();
+      }
+    });
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+    window.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    window.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].screenX - touchStartX;
+      const dy = e.changedTouches[0].screenY - touchStartY;
+      if (Math.abs(dx) > 75 && Math.abs(dx) > Math.abs(dy) * 1.8) {
+        if (dx < 0) nextSlide();
+        else prevSlide();
+      }
+    }, { passive: true });
+
+    // Initialize Slide 1
+    renderSlide(0, false);
+  </script>
+</body>
+</html>
